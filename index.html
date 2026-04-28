@@ -1,0 +1,2191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Stark Legal — A 21st century full-service commercial law firm in Nigeria providing strategic legal solutions in Energy, Transport, Financial Services, Corporate & Commercial Law, and Dispute Resolution.">
+  <title>Stark Legal | Commercial Law Firm | Nigeria</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+    /* ══════════════════════════════════════════
+       TOKENS & RESET
+    ══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #0C1B33;
+      --navy-mid:  #122040;
+      --navy-dark: #080F1C;
+      --gold:      #C8A96E;
+      --gold-lt:   #DFC28E;
+      --gold-dk:   #A8893E;
+      --cream:     #FAF9F6;
+      --cream-dk:  #F0EDE5;
+      --white:     #FFFFFF;
+      --ink:       #1A1916;
+      --ink-2:     #58564E;
+      --rule:      #E5E1D6;
+
+      /* Brand colours from Stark Legal shield */
+      --brand-blue:    #1877B5;
+      --brand-blue-lt: #2196D3;
+      --brand-green:   #4CA64C;
+      --brand-green-lt:#5CB85C;
+
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+
+      --nav-h:  80px;
+      --sec-py: 130px;
+      --ease:   cubic-bezier(.4,0,.2,1);
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--sans);
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    button, input, textarea, select { font-family: inherit; }
+
+    /* ══════════════════════════════════════════
+       LAYOUT
+    ══════════════════════════════════════════ */
+    .W {
+      width: 100%;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 52px;
+    }
+
+    /* ══════════════════════════════════════════
+       ATOMS — consistent across ALL sections
+    ══════════════════════════════════════════ */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--sans);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 36px; height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .eyebrow--dim { color: rgba(200,169,110,.7); }
+    .eyebrow--dim::before { background: rgba(200,169,110,.7); }
+
+    .H2 {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 3.8vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -.02em;
+      color: var(--navy);
+      margin-bottom: 28px;
+    }
+    .H2--lt { color: var(--cream); }
+
+    .section-body {
+      font-size: .975rem;
+      color: var(--ink-2);
+      line-height: 1.82;
+    }
+
+    /* ══════════════════════════════════════════
+       SCROLL REVEAL
+    ══════════════════════════════════════════ */
+    .sr {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .8s var(--ease), transform .8s var(--ease);
+    }
+    .sr.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: .12s; }
+    .d2 { transition-delay: .22s; }
+    .d3 { transition-delay: .32s; }
+    .d4 { transition-delay: .44s; }
+    .d5 { transition-delay: .56s; }
+
+    /* ══════════════════════════════════════════
+       BUTTONS
+    ══════════════════════════════════════════ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 32px;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all .3s var(--ease);
+      white-space: nowrap;
+    }
+    .btn svg { flex-shrink: 0; transition: transform .3s var(--ease); }
+    .btn:hover svg { transform: translateX(5px); }
+
+    .btn-gold  { background: var(--gold);  color: var(--navy);  border-color: var(--gold); }
+    .btn-gold:hover { background: var(--gold-dk); border-color: var(--gold-dk); }
+
+    .btn-ghost { background: transparent; color: var(--white); border-color: rgba(255,255,255,.35); }
+    .btn-ghost:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.7); }
+
+    .btn-outline { background: transparent; color: var(--navy); border-color: var(--navy); }
+    .btn-outline:hover { background: var(--navy); color: var(--white); }
+
+    .btn-blue { background: var(--brand-blue); color: var(--white); border-color: var(--brand-blue); }
+    .btn-blue:hover { background: var(--brand-blue-lt); border-color: var(--brand-blue-lt); }
+
+    .ico-arr { width: 16px; height: 16px; }
+
+    /* ══════════════════════════════════════════
+       NAVIGATION
+    ══════════════════════════════════════════ */
+    #nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 999;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      transition: background .4s var(--ease), box-shadow .4s var(--ease);
+    }
+    #nav.stuck {
+      background: rgba(8,15,28,.97);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 rgba(255,255,255,.05);
+    }
+    .nav-row { display: flex; align-items: center; justify-content: space-between; }
+
+    .nav-logo { display: flex; align-items: center; gap: 13px; color: var(--white); flex-shrink: 0; }
+    .nav-icon { width: 42px; height: 42px; object-fit: contain; flex-shrink: 0; }
+    .nav-name { font-family: var(--serif); font-size: 1.45rem; font-weight: 500; letter-spacing: .05em; line-height: 1; }
+    .nav-name span { font-weight: 300; color: rgba(255,255,255,.5); }
+
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-size: 11.5px; font-weight: 400; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.68); position: relative; transition: color .3s;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1px; background: var(--gold); transition: width .3s var(--ease);
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+      background: var(--brand-green); color: var(--white) !important;
+      padding: 10px 24px; transition: background .3s !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--brand-green-lt) !important; }
+
+    .nav-burger {
+      display: none; flex-direction: column; gap: 6px;
+      cursor: pointer; padding: 4px; background: none; border: none;
+    }
+    .nav-burger span { display: block; width: 26px; height: 1.5px; background: var(--white); transition: all .35s var(--ease); }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    #mob-menu {
+      display: none; position: fixed; inset: 0; background: var(--navy-dark);
+      z-index: 998; flex-direction: column; align-items: center; justify-content: center;
+      gap: 40px; opacity: 0; transition: opacity .4s var(--ease);
+    }
+    #mob-menu.open { display: flex; }
+    #mob-menu.visible { opacity: 1; }
+    #mob-menu a {
+      font-family: var(--serif); font-size: 2.4rem; font-weight: 300;
+      color: var(--white); letter-spacing: .04em; transition: color .3s;
+    }
+    #mob-menu a:hover { color: var(--gold); }
+
+    /* ══════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════ */
+    #hero {
+      position: relative; min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      background: var(--navy); overflow: hidden;
+    }
+    .hero-atm {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 90% 70% at 75% 55%, rgba(200,169,110,.08) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 50% at 15% 85%, rgba(200,169,110,.04) 0%, transparent 50%),
+        linear-gradient(148deg, #091524 0%, #0e2040 50%, #0C1B33 100%);
+    }
+    .hero-geo {
+      position: absolute; right: 0; top: 0; width: 58%; height: 100%;
+      overflow: hidden; pointer-events: none;
+    }
+    .hero-geo svg {
+      width: 100%; height: 100%;
+      animation: geo-spin 90s linear infinite;
+      transform-origin: 50% 50%;
+    }
+    @keyframes geo-spin { to { transform: rotate(360deg); } }
+
+    .hero-body {
+      position: relative; z-index: 2;
+      padding-top: calc(var(--nav-h) + 20px);
+      padding-bottom: 160px;
+    }
+    .hero-loc {
+      display: flex; align-items: center; gap: 14px;
+      font-size: 10.5px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 30px;
+      opacity: 0; animation: fadeUp .9s var(--ease) .3s forwards;
+    }
+    .hero-loc::before { content: ''; display: block; width: 44px; height: 1px; background: var(--gold); }
+
+    .hero-h1 {
+      font-family: var(--serif);
+      font-size: clamp(4rem, 8vw, 8rem);
+      font-weight: 300; line-height: .97; letter-spacing: -.03em;
+      color: var(--white); margin-bottom: 30px; max-width: 820px;
+      opacity: 0; animation: fadeUp 1s var(--ease) .5s forwards;
+    }
+    .hero-h1 em { font-style: italic; color: var(--gold); }
+
+    .hero-sub {
+      font-family: var(--serif);
+      font-size: clamp(1.05rem, 1.7vw, 1.45rem);
+      font-weight: 300; font-style: italic;
+      color: rgba(255,255,255,.5); max-width: 540px;
+      margin-bottom: 50px; line-height: 1.5;
+      opacity: 0; animation: fadeUp 1s var(--ease) .7s forwards;
+    }
+    .hero-btns {
+      display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 1s var(--ease) .9s forwards;
+    }
+
+    .hero-strip {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      display: grid; grid-template-columns: repeat(4,1fr);
+      border-top: 1px solid rgba(255,255,255,.06); z-index: 2;
+      opacity: 0; animation: fadeUp 1s var(--ease) 1.1s forwards;
+    }
+    .hs { padding: 24px 40px; border-right: 1px solid rgba(255,255,255,.06); }
+    .hs:last-child { border-right: none; }
+    .hs-n { font-family: var(--serif); font-size: 2.2rem; font-weight: 300; color: var(--white); line-height: 1; margin-bottom: 4px; }
+    .hs-n b { color: var(--gold); font-weight: 300; }
+    .hs-l { font-size: 9.5px; font-weight: 400; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.32); }
+
+    .hero-scroll-hint {
+      position: absolute; right: 56px; top: 50%; transform: translateY(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 12px; z-index: 2;
+      writing-mode: vertical-rl; font-size: 9px; font-weight: 500;
+      letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.22); user-select: none;
+    }
+    .hero-scroll-hint::after {
+      content: ''; display: block; width: 1px; height: 64px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: breathe 2.5s ease-in-out infinite;
+    }
+
+    /* ══════════════════════════════════════════
+       ABOUT
+    ══════════════════════════════════════════ */
+    #about { padding: var(--sec-py) 0; background: var(--cream); }
+
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 100px; align-items: center;
+    }
+    .about-body { font-size: 1.05rem; color: var(--ink-2); line-height: 1.85; margin-bottom: 22px; }
+
+    .pills { display: flex; gap: 8px; flex-wrap: wrap; margin: 28px 0 36px; }
+    .pill {
+      padding: 6px 16px; border: 1px solid var(--rule);
+      font-size: 10.5px; font-weight: 400; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--ink-2); transition: all .3s;
+    }
+    .pill:hover { border-color: var(--gold); color: var(--navy); }
+
+    .quote-card { position: relative; background: var(--navy); padding: 64px 56px; overflow: hidden; }
+    .quote-card::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(200,169,110,.055) 60px, rgba(200,169,110,.055) 61px),
+        repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(200,169,110,.055) 60px, rgba(200,169,110,.055) 61px);
+    }
+    .qc-in { position: relative; z-index: 1; }
+    .qc-mark { font-family: var(--serif); font-size: 7rem; line-height: .65; color: var(--gold); opacity: .28; margin-bottom: 20px; display: block; }
+    .qc-text { font-family: var(--serif); font-size: 1.8rem; font-weight: 300; font-style: italic; color: var(--white); line-height: 1.4; margin-bottom: 26px; }
+    .qc-attr { font-size: 10px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+    .qc-deco { position: absolute; bottom: -28px; right: -28px; width: 180px; height: 180px; border: 1px solid var(--gold); opacity: .12; pointer-events: none; }
+
+    /* ══════════════════════════════════════════
+       GALLERY — scroll-driven zoom parallax
+       (adapted from sample2)
+       300vh sticky section: 7 layers scale 1→max
+       as user scrolls through the zone.
+    ══════════════════════════════════════════ */
+    #gallery { background: var(--navy-dark); }
+
+    .gal-header {
+      padding: 48px 0 32px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .gal-tagline {
+      font-family: var(--serif); font-style: italic;
+      font-size: 1rem; font-weight: 300;
+      color: rgba(255,255,255,.32); letter-spacing: .02em;
+    }
+
+    /* 300vh scroll zone — sticky pane lives inside */
+    #gal-zone { height: 300vh; position: relative; }
+
+    .gal-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--navy-dark);
+    }
+
+    /* Each layer fills the viewport, scales from its own transform-origin */
+    .gal-layer {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      will-change: transform;
+      transform-origin: center center;
+    }
+
+    .gal-box {
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .gal-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(.82) saturate(.85);
+    }
+    .gal-box::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(8,15,28,.28) 0%, transparent 55%, rgba(8,15,28,.18) 100%);
+      pointer-events: none;
+    }
+
+    /* Subtle overlay text inside sticky pane */
+    .gal-sticky-label {
+      position: absolute;
+      bottom: 42px; left: 0; right: 0;
+      text-align: center;
+      z-index: 10; pointer-events: none;
+      font-family: var(--serif); font-style: italic;
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      font-weight: 300; letter-spacing: .12em;
+      color: rgba(255,255,255,.04);
+      user-select: none;
+    }
+
+    /* Scroll hint inside sticky pane */
+    .gal-cue {
+      position: absolute; bottom: 34px; right: 48px; z-index: 10;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+      color: rgba(255,255,255,.22); pointer-events: none;
+    }
+    .gal-cue::before {
+      content: ''; display: block; width: 36px; height: 1px;
+      background: rgba(200,169,110,.4);
+    }
+
+    /* Footer bar below scroll zone */
+    .gal-footer {
+      padding: 26px 0;
+      display: flex; align-items: center; justify-content: center; gap: 40px;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .gal-foot-item {
+      font-size: 9.5px; font-weight: 400; letter-spacing: .2em;
+      text-transform: uppercase; color: rgba(255,255,255,.22);
+    }
+    .gal-foot-sep { width: 4px; height: 4px; background: var(--gold); opacity: .4; border-radius: 50%; }
+
+    /* ══════════════════════════════════════════
+       STATS
+    ══════════════════════════════════════════ */
+    #stats { background: var(--navy-dark); border-top: 1px solid rgba(255,255,255,.05); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); }
+    .stat { padding: 56px 44px; text-align: center; border-right: 1px solid rgba(255,255,255,.05); }
+    .stat:last-child { border-right: none; }
+    .stat-n { font-family: var(--serif); font-size: 3.2rem; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 8px; }
+    .stat-l { font-size: 9.5px; font-weight: 400; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.32); }
+
+    /* ══════════════════════════════════════════
+       LOGO CLOUD — adapted from sample4
+       CSS infinite scroll ticker of client names
+    ══════════════════════════════════════════ */
+    #logo-cloud {
+      background: var(--navy-dark);
+      border-top: 1px solid rgba(255,255,255,.04);
+      border-bottom: 1px solid rgba(255,255,255,.04);
+      padding: 36px 0;
+      overflow: hidden;
+    }
+    .lc-label {
+      text-align: center;
+      font-size: 9.5px; font-weight: 500; letter-spacing: .22em;
+      text-transform: uppercase; color: rgba(255,255,255,.18);
+      margin-bottom: 22px;
+    }
+    .lc-track-wrap {
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    }
+    .lc-track {
+      display: flex;
+      width: max-content;
+      animation: lcScroll 54s linear infinite;
+    }
+    .lc-track:hover { animation-play-state: paused; }
+    .lc-item {
+      display: inline-block;
+      padding: 0 44px;
+      font-family: var(--serif);
+      font-size: 1.08rem; font-weight: 300;
+      color: rgba(255,255,255,.3);
+      white-space: nowrap; letter-spacing: .04em;
+      transition: color .3s;
+    }
+    .lc-item:hover { color: var(--gold); }
+    .lc-sep {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 0;
+      width: 5px; height: 5px;
+      background: rgba(200,169,110,.22);
+      border-radius: 50%;
+      flex-shrink: 0;
+      align-self: center;
+    }
+    @keyframes lcScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ══════════════════════════════════════════
+       PRACTICE AREAS
+    ══════════════════════════════════════════ */
+    #practice { padding: var(--sec-py) 0; background: var(--cream-dk); }
+
+    .practice-hd {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 40px; margin-bottom: 72px;
+    }
+    .practice-intro { font-size: .975rem; color: var(--ink-2); max-width: 380px; line-height: 1.82; flex-shrink: 0; }
+
+    .practice-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
+
+    .pc {
+      background: var(--white); padding: 52px 44px;
+      position: relative; overflow: hidden; cursor: default;
+    }
+    .pc::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--navy); transform: scaleY(0);
+      transform-origin: bottom; transition: transform .6s cubic-bezier(.76,0,.24,1); z-index: 0;
+    }
+    .pc:hover::after { transform: scaleY(1); }
+    .pc-in { position: relative; z-index: 1; }
+
+    .pc-num { font-family: var(--serif); font-size: .78rem; color: var(--gold); letter-spacing: .1em; margin-bottom: 34px; display: block; transition: color .4s; }
+    .pc-ico { width: 52px; height: 52px; margin-bottom: 22px; color: var(--navy); transition: color .4s; }
+    .pc-title { font-family: var(--serif); font-size: 1.62rem; font-weight: 400; color: var(--navy); margin-bottom: 14px; line-height: 1.15; transition: color .35s; }
+    .pc-body { font-size: .875rem; color: var(--ink-2); line-height: 1.82; transition: color .35s; }
+
+    .pc:hover .pc-title, .pc:hover .pc-body { color: rgba(255,255,255,.82); }
+    .pc:hover .pc-ico   { color: var(--gold); }
+    .pc:hover .pc-num   { color: rgba(200,169,110,.7); }
+    .pc--wide { grid-column: span 2; }
+
+    /* ══════════════════════════════════════════
+       APPROACH
+    ══════════════════════════════════════════ */
+    #approach { padding: var(--sec-py) 0; background: var(--navy); position: relative; overflow: hidden; }
+    #approach::before {
+      content: ''; position: absolute; top: -200px; right: -200px;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,169,110,.065) 0%, transparent 65%); pointer-events: none;
+    }
+    .approach-inner { display: grid; grid-template-columns: 380px 1fr; gap: 100px; align-items: start; }
+    .approach-body { font-size: .975rem; color: rgba(255,255,255,.48); line-height: 1.82; margin-bottom: 36px; }
+
+    .steps { display: flex; flex-direction: column; gap: 3px; }
+    .step {
+      display: flex; gap: 28px; align-items: flex-start;
+      padding: 30px 36px;
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.055);
+      transition: all .35s var(--ease); cursor: default;
+    }
+    .step:hover { background: rgba(200,169,110,.075); border-color: rgba(200,169,110,.2); transform: translateX(6px); }
+    .step-n { font-family: var(--serif); font-size: 2.2rem; font-weight: 300; color: var(--gold); opacity: .32; line-height: 1; flex-shrink: 0; width: 44px; padding-top: 2px; }
+    .step-title { font-family: var(--serif); font-size: 1.2rem; color: var(--white); margin-bottom: 6px; }
+    .step-body { font-size: .85rem; color: rgba(255,255,255,.43); line-height: 1.75; }
+
+    /* ══════════════════════════════════════════
+       TESTIMONIALS — adapted from sample3
+    ══════════════════════════════════════════ */
+    #testi {
+      padding: var(--sec-py) 0;
+      background: var(--cream);
+      position: relative; overflow: hidden;
+    }
+
+    .testi-bgnum {
+      position: absolute;
+      right: -30px; top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--serif);
+      font-size: clamp(16rem, 28vw, 26rem);
+      font-weight: 600;
+      color: rgba(12,27,51,.04);
+      line-height: 1;
+      pointer-events: none; user-select: none;
+      letter-spacing: -.06em;
+      transition: none;
+    }
+
+    .testi-inner {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 56px;
+      align-items: center;
+      position: relative; z-index: 1;
+    }
+
+    .testi-left {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 20px;
+    }
+    .testi-vert {
+      font-size: 9.5px; font-weight: 500; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--ink-2);
+      writing-mode: vertical-rl;
+    }
+    .testi-prog {
+      position: relative;
+      width: 1px; height: 120px;
+      background: var(--rule);
+    }
+    .testi-pfill {
+      position: absolute; top: 0; left: 0;
+      width: 100%; background: var(--gold);
+      transition: height .6s var(--ease);
+    }
+
+    .testi-right {
+      padding-left: 56px;
+      border-left: 1px solid var(--rule);
+    }
+
+    .testi-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 10px; font-weight: 500; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--ink-2);
+      border: 1px solid var(--rule); padding: 7px 16px;
+      margin-bottom: 36px; transition: all .4s;
+    }
+    .testi-badge::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+
+    .testi-quote {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 300;
+      color: var(--navy);
+      line-height: 1.22;
+      min-height: 130px;
+      margin-bottom: 48px;
+    }
+
+    .tw {
+      display: inline-block;
+      margin-right: 0.28em;
+      opacity: 0;
+      animation: tWordIn .55s var(--ease) forwards;
+    }
+    @keyframes tWordIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .testi-foot { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+    .testi-author { display: flex; align-items: center; gap: 18px; }
+    .testi-aline { width: 32px; height: 1px; background: var(--gold); flex-shrink: 0; }
+    .testi-aname { font-family: var(--serif); font-size: 1.05rem; color: var(--navy); }
+    .testi-arole { font-size: 10px; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); margin-top: 3px; }
+
+    .testi-nav { display: flex; gap: 10px; }
+    .testi-btn {
+      width: 48px; height: 48px;
+      border: 1px solid var(--rule);
+      display: grid; place-items: center;
+      background: none; cursor: pointer; color: var(--ink-2);
+      transition: all .3s var(--ease);
+    }
+    .testi-btn:hover { border-color: var(--navy); color: var(--navy); background: rgba(12,27,51,.04); }
+
+    /* ══════════════════════════════════════════
+       TEAM SHOWCASE — adapted from sample1
+    ══════════════════════════════════════════ */
+    #team { padding: var(--sec-py) 0; background: var(--cream-dk); }
+
+    .team-hd {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 40px; margin-bottom: 64px;
+    }
+    .team-intro { font-size: .975rem; color: var(--ink-2); max-width: 400px; line-height: 1.82; }
+
+    .tsg-layout {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .tsg-photos { display: flex; gap: 10px; flex-shrink: 0; }
+
+    .tsg-col { display: flex; flex-direction: column; gap: 10px; }
+    .tsg-col--b { margin-top: 64px; }
+    .tsg-col--c { margin-top: 32px; }
+
+    .tsp {
+      position: relative; overflow: hidden; cursor: default;
+      transition: opacity .35s var(--ease);
+    }
+    .tsp--a { width: 160px; height: 200px; }
+    .tsp--b { width: 178px; height: 220px; }
+    .tsp--c { width: 168px; height: 210px; }
+
+    .tsp img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top center;
+      filter: grayscale(.95) brightness(.72);
+      transition: filter .55s var(--ease), transform .4s var(--ease);
+    }
+    .tsp.hi-on img  { filter: grayscale(0) brightness(1); transform: scale(1.02); }
+    .tsp.hi-off     { opacity: .38; }
+
+    .tsp::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--gold);
+      transform: scaleX(0); transition: transform .4s var(--ease);
+    }
+    .tsp.hi-on::after { transform: scaleX(1); }
+
+    .tsg-names {
+      display: flex; flex-direction: column;
+      justify-content: flex-start; gap: 0;
+      padding-top: 4px;
+    }
+
+    .tnr {
+      display: flex; flex-direction: column;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--rule);
+      cursor: default; transition: opacity .3s var(--ease);
+    }
+    .tnr:first-child { border-top: 1px solid var(--rule); }
+
+    .tnr.hi-off { opacity: .3; }
+
+    .tnr-top { display: flex; align-items: center; gap: 14px; }
+
+    .tnr-bar {
+      width: 14px; height: 8px;
+      background: rgba(26,25,22,.15);
+      border-radius: 3px; flex-shrink: 0;
+      transition: all .3s var(--ease);
+    }
+    .tnr.hi-on .tnr-bar { width: 22px; background: var(--navy); }
+
+    .tnr-name {
+      font-family: var(--serif);
+      font-size: 1.18rem; font-weight: 400;
+      color: var(--navy); line-height: 1;
+      transition: color .3s;
+    }
+
+    .tnr-socials {
+      display: flex; gap: 6px; margin-left: auto;
+      opacity: 0; transform: translateX(-6px);
+      transition: all .25s var(--ease);
+      pointer-events: none;
+    }
+    .tnr.hi-on .tnr-socials { opacity: 1; transform: none; pointer-events: auto; }
+    .tnr-social {
+      width: 26px; height: 26px; border: 1px solid var(--rule);
+      display: grid; place-items: center;
+      color: var(--ink-2); transition: all .2s;
+    }
+    .tnr-social:hover { border-color: var(--navy); color: var(--navy); }
+
+    .tnr-role {
+      font-size: 9px; font-weight: 500; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--gold);
+      padding-left: 36px; margin-top: 5px;
+    }
+
+    /* ══════════════════════════════════════════
+       AWARDS
+    ══════════════════════════════════════════ */
+    #awards { padding: var(--sec-py) 0; background: var(--navy-dark); position: relative; overflow: hidden; }
+    #awards::after {
+      content: '★'; position: absolute; right: -80px; top: -100px;
+      font-family: serif; font-size: 42rem; color: rgba(200,169,110,.025);
+      line-height: 1; pointer-events: none;
+    }
+    .awards-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+    .awards-body { font-size: .975rem; color: rgba(255,255,255,.44); line-height: 1.82; margin-bottom: 36px; }
+
+    .award-list { display: flex; flex-direction: column; gap: 3px; }
+    .award {
+      display: flex; gap: 24px; align-items: flex-start;
+      padding: 26px 30px;
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.055);
+      transition: all .35s var(--ease); cursor: default;
+    }
+    .award:hover { background: rgba(200,169,110,.075); border-color: rgba(200,169,110,.2); transform: translateX(5px); }
+    .award-yr { font-family: var(--serif); font-size: .88rem; color: var(--gold); opacity: .55; flex-shrink: 0; width: 48px; padding-top: 2px; }
+    .award-title { font-family: var(--serif); font-size: 1.06rem; color: var(--white); margin-bottom: 4px; }
+    .award-org { font-size: 9.5px; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.26); }
+
+    /* ══════════════════════════════════════════
+       CONTACT — with D3 globe (sample5)
+    ══════════════════════════════════════════ */
+    #contact { padding: var(--sec-py) 0; background: var(--cream); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 80px; align-items: start; }
+    .contact-body { font-size: .975rem; color: var(--ink-2); line-height: 1.82; margin-bottom: 32px; }
+
+    /* Globe */
+    .globe-wrap {
+      position: relative;
+      margin: 0 0 32px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #091524;
+      box-shadow: 0 0 0 1px rgba(200,169,110,.12), 0 24px 60px rgba(8,15,28,.22);
+    }
+    #globe-canvas {
+      display: block;
+      width: 100%;
+      cursor: grab;
+    }
+    #globe-canvas:active { cursor: grabbing; }
+    .globe-hint {
+      position: absolute; bottom: 10px; left: 12px;
+      font-size: 9.5px; letter-spacing: .1em;
+      color: rgba(255,255,255,.3);
+      background: rgba(0,0,0,.45);
+      padding: 4px 10px; border-radius: 4px;
+      pointer-events: none;
+    }
+    .globe-loading {
+      display: flex; align-items: center; justify-content: center;
+      height: 320px;
+      font-family: var(--serif); font-style: italic;
+      font-size: .95rem; color: rgba(200,169,110,.4);
+      letter-spacing: .06em;
+    }
+
+    .contact-details { display: flex; flex-direction: column; gap: 22px; }
+    .cd { display: flex; gap: 18px; align-items: flex-start; }
+    .cd-icon { width: 42px; height: 42px; background: var(--navy); display: grid; place-items: center; flex-shrink: 0; color: var(--gold); }
+    .cd-lbl { font-size: 9px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 5px; }
+    .cd-val { font-family: var(--serif); font-size: 1.05rem; color: var(--navy); line-height: 1.55; }
+    .cd-val a { transition: color .3s; }
+    .cd-val a:hover { color: var(--gold); }
+
+    .office-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 7px; }
+    .office-tag { padding: 5px 14px; background: var(--navy); color: rgba(255,255,255,.7); font-size: 10px; font-weight: 400; letter-spacing: .1em; text-transform: uppercase; }
+
+    /* Form */
+    .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .fg { margin-bottom: 18px; }
+    .fg label { display: block; font-size: 9.5px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 7px; }
+    .fg input, .fg textarea, .fg select {
+      width: 100%; padding: 13px 15px;
+      background: var(--white); border: 1px solid var(--rule);
+      font-family: var(--sans); font-size: .9rem; color: var(--ink);
+      outline: none; appearance: none; border-radius: 0; transition: border-color .3s;
+    }
+    .fg input:focus, .fg textarea:focus, .fg select:focus { border-color: var(--brand-blue); }
+    .fg textarea { height: 126px; resize: vertical; }
+    .f-submit {
+      width: 100%; padding: 15px;
+      background: var(--brand-blue); color: var(--white);
+      font-family: var(--sans); font-size: 11px; font-weight: 500;
+      letter-spacing: .16em; text-transform: uppercase;
+      border: 1px solid var(--brand-blue); cursor: pointer;
+      transition: all .35s var(--ease); margin-top: 4px;
+    }
+    .f-submit:hover { background: var(--brand-blue-lt); border-color: var(--brand-blue-lt); }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    #footer { background: #06101E; padding: 80px 0 40px; }
+    .footer-top {
+      display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 64px;
+      margin-bottom: 64px; padding-bottom: 64px;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .footer-icon { width: 38px; height: 38px; object-fit: contain; flex-shrink: 0; }
+    .footer-name { font-family: var(--serif); font-size: 1.35rem; color: var(--white); }
+    .footer-tag { font-family: var(--serif); font-style: italic; font-size: .95rem; color: rgba(255,255,255,.28); line-height: 1.6; margin-bottom: 28px; }
+
+    .footer-socials { display: flex; gap: 10px; }
+    .fsoc { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.1); display: grid; place-items: center; color: rgba(255,255,255,.38); transition: all .3s; }
+    .fsoc:hover { border-color: var(--gold); color: var(--gold); }
+
+    .fc-title { font-size: 10px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 22px; }
+    .fc-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .fc-links a { font-size: .855rem; color: rgba(255,255,255,.36); transition: color .3s; }
+    .fc-links a:hover { color: var(--white); }
+
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+    .footer-copy { font-size: 11.5px; color: rgba(255,255,255,.17); }
+    .footer-disc { font-size: 10.5px; color: rgba(255,255,255,.13); max-width: 440px; text-align: right; line-height: 1.6; }
+
+    /* ══════════════════════════════════════════
+       KEYFRAMES
+    ══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes breathe {
+      0%, 100% { opacity: .4; transform: scaleY(1); }
+      50%       { opacity: 1; transform: scaleY(1.08); }
+    }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
+    @media (max-width: 1200px) {
+      .tsg-layout { grid-template-columns: 1fr; gap: 52px; }
+      .tsg-photos { justify-content: center; }
+      .tsg-names  { display: grid; grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 1100px) {
+      .W { padding: 0 36px; }
+      .about-grid { gap: 64px; }
+      .approach-inner { grid-template-columns: 1fr; gap: 56px; }
+      .awards-inner { grid-template-columns: 1fr; gap: 56px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .hero-scroll-hint { display: none; }
+      /* Gallery: reduce to 200vh on medium screens */
+      #gal-zone { height: 220vh; }
+      #gl5, #gl6 { opacity: .5; }
+    }
+    @media (max-width: 900px) {
+      :root { --sec-py: 100px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .practice-grid { grid-template-columns: 1fr 1fr; }
+      .pc--wide { grid-column: span 1; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+      .stat { border-bottom: 1px solid rgba(255,255,255,.05); }
+      .contact-grid { grid-template-columns: 1fr; gap: 64px; }
+      .hero-strip { display: none; }
+      .practice-hd { flex-direction: column; align-items: flex-start; }
+      .team-hd { flex-direction: column; align-items: flex-start; }
+      .testi-inner { grid-template-columns: 1fr; }
+      .testi-left { flex-direction: row; justify-content: flex-start; }
+      .testi-vert { writing-mode: horizontal-tb; }
+      .testi-prog { width: 80px; height: 1px; }
+      .testi-pfill { top: auto; left: 0; width: 0; height: 100%; }
+      .tsg-col--b { margin-top: 44px; }
+      .tsg-col--c { margin-top: 22px; }
+      .tsp--a { width: 130px; height: 165px; }
+      .tsp--b { width: 145px; height: 180px; }
+      .tsp--c { width: 138px; height: 172px; }
+      /* Gallery on tablet: simpler parallax */
+      #gal-zone { height: 180vh; }
+      #gl5, #gl6 { display: none; }
+    }
+    @media (max-width: 640px) {
+      :root { --nav-h: 64px; --sec-py: 80px; }
+      .W { padding: 0 22px; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-burger { display: flex; }
+      .hero-h1 { font-size: 3.2rem; }
+      .hero-btns { flex-direction: column; align-items: flex-start; }
+      .practice-grid { grid-template-columns: 1fr; }
+      .pc--wide { grid-column: span 1; }
+      .f-row { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .footer-disc { text-align: center; max-width: 100%; }
+      /* Gallery on mobile: shorter, fewer layers */
+      #gal-zone { height: 160vh; }
+      #gl3, #gl4, #gl5, #gl6 { display: none; }
+      .gal-box { transform: none !important; }
+      .gal-cue { display: none; }
+      .tsg-photos { overflow-x: auto; padding-bottom: 8px; }
+      .tsg-col--b { margin-top: 32px; }
+      .tsp--a { width: 110px; height: 140px; }
+      .tsp--b { width: 122px; height: 155px; }
+      .tsp--c { width: 115px; height: 147px; }
+      .testi-right { padding-left: 0; border-left: none; border-top: 1px solid var(--rule); padding-top: 32px; }
+      .testi-bgnum { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════════ -->
+<nav id="nav" aria-label="Main navigation">
+  <div class="W nav-row">
+    <a href="#hero" class="nav-logo" aria-label="Stark Legal home">
+      <img src="https://starklegalng.com/wp-content/uploads/2025/05/starklegal-icon.png"
+           alt="Stark Legal shield" class="nav-icon" width="42" height="42">
+      <div class="nav-name">Stark <span>Legal</span></div>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="#about">About</a></li>
+      <li><a href="#practice">Practice</a></li>
+      <li><a href="#testi">Clients</a></li>
+      <li><a href="#team">People</a></li>
+      <li><a href="#awards">Recognition</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="nav-cta">Book Consultation</a></li>
+    </ul>
+    <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile overlay menu -->
+<div id="mob-menu" role="dialog" aria-label="Mobile navigation">
+  <a href="#about"    onclick="closeMob()">About</a>
+  <a href="#practice" onclick="closeMob()">Practice</a>
+  <a href="#testi"    onclick="closeMob()">Clients</a>
+  <a href="#team"     onclick="closeMob()">People</a>
+  <a href="#awards"   onclick="closeMob()">Recognition</a>
+  <a href="#contact"  onclick="closeMob()">Contact</a>
+</div>
+
+<!-- ══ HERO ══════════════════════════════════ -->
+<section id="hero" aria-label="Introduction">
+  <div class="hero-atm" aria-hidden="true"></div>
+
+  <div class="hero-geo" aria-hidden="true">
+    <svg viewBox="0 0 900 900" fill="none" preserveAspectRatio="xMidYMid slice">
+      <circle cx="500" cy="450" r="420" stroke="rgba(200,169,110,0.06)" stroke-width="1"/>
+      <circle cx="500" cy="450" r="340" stroke="rgba(200,169,110,0.07)" stroke-width="1"/>
+      <circle cx="500" cy="450" r="260" stroke="rgba(200,169,110,0.09)" stroke-width="1"/>
+      <circle cx="500" cy="450" r="180" stroke="rgba(200,169,110,0.11)" stroke-width="1"/>
+      <circle cx="500" cy="450" r="100" stroke="rgba(200,169,110,0.13)" stroke-width="1"/>
+      <line x1="80"  y1="450" x2="920" y2="450" stroke="rgba(200,169,110,0.055)" stroke-width="1"/>
+      <line x1="500" y1="20"  x2="500" y2="880" stroke="rgba(200,169,110,0.055)" stroke-width="1"/>
+      <line x1="200" y1="30"  x2="800" y2="870" stroke="rgba(200,169,110,0.035)" stroke-width="1"/>
+      <line x1="800" y1="30"  x2="200" y2="870" stroke="rgba(200,169,110,0.035)" stroke-width="1"/>
+      <line x1="320" y1="330" x2="680" y2="330" stroke="rgba(200,169,110,0.22)" stroke-width="1.5"/>
+      <line x1="500" y1="295" x2="500" y2="365" stroke="rgba(200,169,110,0.22)" stroke-width="1.5"/>
+      <path d="M298 330 A36 36 0 0 0 368 330" stroke="rgba(200,169,110,0.35)" stroke-width="1.5" fill="none"/>
+      <path d="M632 330 A36 36 0 0 0 702 330" stroke="rgba(200,169,110,0.35)" stroke-width="1.5" fill="none"/>
+      <path d="M500 30 A420 420 0 0 1 920 450" stroke="rgba(200,169,110,0.1)" stroke-width="1.5" fill="none"/>
+      <path d="M170 115 A340 340 0 0 0 80 450" stroke="rgba(200,169,110,0.07)" stroke-width="1" fill="none"/>
+      <circle cx="500" cy="30"  r="3.5" fill="rgba(200,169,110,0.28)"/>
+      <circle cx="920" cy="450" r="3.5" fill="rgba(200,169,110,0.28)"/>
+      <circle cx="500" cy="870" r="3.5" fill="rgba(200,169,110,0.18)"/>
+      <circle cx="80"  cy="450" r="3.5" fill="rgba(200,169,110,0.18)"/>
+    </svg>
+  </div>
+
+  <div class="W hero-body">
+    <div class="hero-loc">Lagos &nbsp;·&nbsp; Abuja &nbsp;·&nbsp; Port-Harcourt</div>
+    <h1 class="hero-h1">
+      Strategic<br>
+      <em>Commercial</em><br>
+      Excellence
+    </h1>
+    <p class="hero-sub">"Pursue Excellence and Success will Follow"</p>
+    <div class="hero-btns">
+      <a href="#practice" class="btn btn-gold">
+        Our Practice Areas
+        <svg class="ico-arr" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="#contact" class="btn btn-ghost">Book a Consultation</a>
+    </div>
+  </div>
+
+  <div class="hero-strip" aria-label="Firm highlights">
+    <div class="hs"><div class="hs-n">11<b>+</b></div><div class="hs-l">Years of Excellence</div></div>
+    <div class="hs"><div class="hs-n">5</div><div class="hs-l">Practice Areas</div></div>
+    <div class="hs"><div class="hs-n">3</div><div class="hs-l">Office Cities</div></div>
+    <div class="hs"><div class="hs-n">6<b>+</b></div><div class="hs-l">Industry Awards</div></div>
+  </div>
+  <div class="hero-scroll-hint" aria-hidden="true">Scroll</div>
+</section>
+
+<!-- ══ ABOUT ══════════════════════════════════ -->
+<section id="about" aria-labelledby="about-h">
+  <div class="W">
+    <div class="about-grid">
+      <div class="sr">
+        <div class="eyebrow">About the Firm</div>
+        <h2 class="H2" id="about-h">A 21st Century<br>Full-Service Firm</h2>
+        <p class="about-body">
+          Stark Legal is a full-service commercial law firm in Nigeria, consistently delivering excellent legal support to local and international corporate bodies, government agencies, non-governmental organisations, and individuals — across 11 years of distinguished service.
+        </p>
+        <p class="about-body">
+          We understand market dynamics, client objectives, and the strategic importance of decisive legal counsel. Our approach combines deep sector expertise, innovation, and an unwavering dedication to delivering lasting value.
+        </p>
+        <div class="pills sr d2">
+          <span class="pill">Energy</span>
+          <span class="pill">Transport</span>
+          <span class="pill">Finance</span>
+          <span class="pill">Corporate</span>
+          <span class="pill">Dispute Resolution</span>
+        </div>
+        <div class="sr d3">
+          <a href="#contact" class="btn btn-outline">
+            Get in Touch
+            <svg class="ico-arr" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="sr d2">
+        <div class="quote-card">
+          <div class="qc-in">
+            <span class="qc-mark" aria-hidden="true">"</span>
+            <p class="qc-text">Pursue Excellence and<br>Success will Follow</p>
+            <div class="qc-attr">— Stark Legal, Firm Ethos</div>
+          </div>
+          <div class="qc-deco" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALLERY — scroll-driven zoom parallax (sample2) ══ -->
+<section id="gallery" aria-label="The firm in images">
+
+  <!-- Header above the scroll zone -->
+  <div class="W">
+    <div class="gal-header">
+      <div class="eyebrow eyebrow--dim sr">The Firm in Frame</div>
+      <span class="gal-tagline sr d1">Eleven years. Three cities. One commitment to excellence.</span>
+    </div>
+  </div>
+
+  <!-- 300vh scroll-driven parallax zone -->
+  <div id="gal-zone">
+    <div class="gal-sticky">
+
+      <!-- Watermark label inside sticky pane -->
+      <div class="gal-sticky-label" aria-hidden="true">Stark Legal</div>
+
+      <!-- Scroll cue hint -->
+      <div class="gal-cue" aria-hidden="true">Scroll</div>
+
+      <!-- Layer 0 · center · 28vw×32vh · scale→4 -->
+      <div class="gal-layer" id="gl0">
+        <div class="gal-box" style="width:28vw;height:32vh;">
+          <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=700&h=600&fit=crop&auto=format&q=80"
+               alt="Legal team in meeting" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Layer 1 · upper-right · 32vw×28vh · scale→5 -->
+      <div class="gal-layer" id="gl1">
+        <div class="gal-box" style="width:32vw;height:28vh;transform:translate(18vw,-24vh);">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop&auto=format&q=80"
+               alt="Modern corporate tower" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Layer 2 · lower-left · 26vw×24vh · scale→6 -->
+      <div class="gal-layer" id="gl2">
+        <div class="gal-box" style="width:26vw;height:24vh;transform:translate(-22vw,20vh);">
+          <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=700&h=500&fit=crop&auto=format&q=80"
+               alt="Lagos city skyline" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Layer 3 · lower-right · 30vw×26vh · scale→5 -->
+      <div class="gal-layer" id="gl3">
+        <div class="gal-box" style="width:30vw;height:26vh;transform:translate(20vw,22vh);">
+          <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&h=600&fit=crop&auto=format&q=80"
+               alt="Scales of justice" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Layer 4 · upper-left · 24vw×28vh · scale→6 -->
+      <div class="gal-layer" id="gl4">
+        <div class="gal-box" style="width:24vw;height:28vh;transform:translate(-20vw,-22vh);">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=700&fit=crop&auto=format&q=80"
+               alt="Modern office interior" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Layer 5 · far-right · 22vw×22vh · scale→8 -->
+      <div class="gal-layer" id="gl5">
+        <div class="gal-box" style="width:22vw;height:22vh;transform:translate(36vw,-6vh);">
+          <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=600&h=500&fit=crop&auto=format&q=80"
+               alt="Executive office desk" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Layer 6 · far-left · 20vw×18vh · scale→9 -->
+      <div class="gal-layer" id="gl6">
+        <div class="gal-box" style="width:20vw;height:18vh;transform:translate(-36vw,4vh);">
+          <img src="https://images.unsplash.com/photo-1564069114553-7215e1ff1890?w=550&h=420&fit=crop&auto=format&q=80"
+               alt="Law reference books" loading="lazy">
+        </div>
+      </div>
+
+    </div><!-- /gal-sticky -->
+  </div><!-- /gal-zone -->
+
+  <!-- Footer bar below scroll zone -->
+  <div class="W">
+    <div class="gal-footer">
+      <span class="gal-foot-item">Full-Service Commercial Law</span>
+      <span class="gal-foot-sep" aria-hidden="true"></span>
+      <span class="gal-foot-item">Lagos</span>
+      <span class="gal-foot-sep" aria-hidden="true"></span>
+      <span class="gal-foot-item">Abuja</span>
+      <span class="gal-foot-sep" aria-hidden="true"></span>
+      <span class="gal-foot-item">Port-Harcourt</span>
+      <span class="gal-foot-sep" aria-hidden="true"></span>
+      <span class="gal-foot-item">Est. 2013</span>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══ STATS ══════════════════════════════════ -->
+<section id="stats" aria-label="Firm statistics">
+  <div class="W">
+    <div class="stats-grid">
+      <div class="stat sr">
+        <div class="stat-n" data-count="11" data-suf="+">11+</div>
+        <div class="stat-l">Years of Service</div>
+      </div>
+      <div class="stat sr d1">
+        <div class="stat-n" data-count="5"  data-suf="">5</div>
+        <div class="stat-l">Practice Areas</div>
+      </div>
+      <div class="stat sr d2">
+        <div class="stat-n" data-count="3"  data-suf="">3</div>
+        <div class="stat-l">Office Cities</div>
+      </div>
+      <div class="stat sr d3">
+        <div class="stat-n" data-count="6"  data-suf="+">6+</div>
+        <div class="stat-l">Industry Awards</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LOGO CLOUD — adapted from sample4 ══════ -->
+<section id="logo-cloud" aria-label="Client organisations">
+  <div class="lc-label">Trusted by leading institutions across Nigeria</div>
+  <div class="lc-track-wrap">
+    <div class="lc-track" aria-hidden="true">
+      <!-- First set -->
+      <span class="lc-item">Nigerian Safety Investigation Bureau</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">NNPC Limited</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">Central Bank of Nigeria</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">Nigerian Ports Authority</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">Access Bank Plc</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">Nigerian Civil Aviation Authority</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">Dangote Industries</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">Securities &amp; Exchange Commission</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">MTN Nigeria</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">Nigerian Midstream &amp; Downstream Petroleum Regulatory Authority</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">Transcorp Hotels</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">Sterling Bank Plc</span>
+      <span class="lc-sep" role="presentation"></span>
+      <!-- Duplicate set for seamless loop -->
+      <span class="lc-item">Nigerian Safety Investigation Bureau</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">NNPC Limited</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">Central Bank of Nigeria</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">Nigerian Ports Authority</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">Access Bank Plc</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">Nigerian Civil Aviation Authority</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">Dangote Industries</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">Securities &amp; Exchange Commission</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">MTN Nigeria</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">Nigerian Midstream &amp; Downstream Petroleum Regulatory Authority</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">Transcorp Hotels</span>
+      <span class="lc-sep" role="presentation"></span>
+      <span class="lc-item">Sterling Bank Plc</span>
+      <span class="lc-sep" role="presentation"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRACTICE AREAS ══════════════════════════════════ -->
+<section id="practice" aria-labelledby="practice-h">
+  <div class="W">
+    <div class="practice-hd">
+      <div class="sr">
+        <div class="eyebrow">What We Do</div>
+        <h2 class="H2" id="practice-h">Practice Areas</h2>
+      </div>
+      <p class="practice-intro sr d2">
+        From complex energy transactions to high-stakes dispute resolution, our practice spans the full spectrum of commercial law in Nigeria and internationally.
+      </p>
+    </div>
+
+    <div class="practice-grid">
+      <div class="pc sr">
+        <div class="pc-in">
+          <span class="pc-num">01</span>
+          <svg class="pc-ico" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+            <path d="M28 4L8 28h18L22 48 44 20H26L28 4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          <h3 class="pc-title">Energy</h3>
+          <p class="pc-body">Advising on oil &amp; gas transactions, upstream and downstream operations, power sector regulation, and renewable energy projects across Nigeria's dynamic energy landscape.</p>
+        </div>
+      </div>
+
+      <div class="pc sr d1">
+        <div class="pc-in">
+          <span class="pc-num">02</span>
+          <svg class="pc-ico" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+            <path d="M6 38h40M10 26h32l4 12H6l4-12z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M17 26V16h18v10" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="17" cy="43" r="3.5" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="35" cy="43" r="3.5" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <h3 class="pc-title">Transport &amp; Aviation</h3>
+          <p class="pc-body">Comprehensive legal services across aviation, maritime, and road transport — from regulatory compliance and aircraft financing to cargo disputes and liability.</p>
+        </div>
+      </div>
+
+      <div class="pc pc--wide sr d2">
+        <div class="pc-in">
+          <span class="pc-num">03</span>
+          <svg class="pc-ico" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+            <rect x="5" y="11" width="42" height="30" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M5 19h42" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M13 30h6M24 30h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <h3 class="pc-title">Financial Services</h3>
+          <p class="pc-body">Deep expertise in banking regulation, capital markets, insurance law, fintech compliance, and structured finance. We guide financial institutions through Nigeria's evolving regulatory landscape with precision and commercial foresight — advising on landmark transactions and staying at the forefront of the sector.</p>
+        </div>
+      </div>
+
+      <div class="pc sr d3">
+        <div class="pc-in">
+          <span class="pc-num">04</span>
+          <svg class="pc-ico" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+            <rect x="16" y="5" width="20" height="18" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M5 47V27h42v20" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M21 47V33h10v14" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M5 27h42" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <h3 class="pc-title">Corporate &amp; Commercial</h3>
+          <p class="pc-body">M&amp;A, joint ventures, corporate restructuring, contract drafting, and commercial advisory for businesses operating in and across Nigeria's evolving market.</p>
+        </div>
+      </div>
+
+      <div class="pc sr d4">
+        <div class="pc-in">
+          <span class="pc-num">05</span>
+          <svg class="pc-ico" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+            <circle cx="26" cy="26" r="20" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M18 26l6 6 10-12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M26 6v4M26 42v4M6 26h4M42 26h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <h3 class="pc-title">Dispute Resolution</h3>
+          <p class="pc-body">Litigation, arbitration, and mediation services. We represent clients in Nigerian courts and before international arbitral tribunals with strategic, results-driven advocacy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ APPROACH ══════════════════════════════════ -->
+<section id="approach" aria-labelledby="approach-h">
+  <div class="W">
+    <div class="approach-inner">
+      <div>
+        <div class="eyebrow sr">How We Work</div>
+        <h2 class="H2 H2--lt sr d1" id="approach-h">Our Client<br>Approach</h2>
+        <p class="approach-body sr d2">
+          We combine deep sector knowledge with a commitment to understanding each client's unique position. Every brief is a strategic opportunity to deliver lasting value.
+        </p>
+        <div class="sr d3">
+          <a href="#contact" class="btn btn-gold">
+            Start a Conversation
+            <svg class="ico-arr" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step sr">
+          <div class="step-n">01</div>
+          <div><div class="step-title">Understand Your Objectives</div><p class="step-body">We begin every engagement by deeply understanding your commercial objectives, constraints, and risk appetite — before any legal strategy is formed.</p></div>
+        </div>
+        <div class="step sr d1">
+          <div class="step-n">02</div>
+          <div><div class="step-title">Craft a Strategic Framework</div><p class="step-body">Our teams develop tailored legal strategies that align with your goals and the realities of the Nigerian and international regulatory environment.</p></div>
+        </div>
+        <div class="step sr d2">
+          <div class="step-n">03</div>
+          <div><div class="step-title">Execute with Precision</div><p class="step-body">We deliver with speed, accuracy, and clear communication at every stage — keeping you informed and in control throughout the matter.</p></div>
+        </div>
+        <div class="step sr d3">
+          <div class="step-n">04</div>
+          <div><div class="step-title">Build a Long-Term Partnership</div><p class="step-body">We invest in long-term client relationships, providing ongoing strategic counsel as your business evolves.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS — adapted from sample3 ══ -->
+<section id="testi" aria-labelledby="testi-h">
+  <div class="testi-bgnum" id="testi-bgnum" aria-hidden="true">01</div>
+
+  <div class="W">
+    <div class="testi-inner">
+
+      <div class="testi-left" aria-hidden="true">
+        <span class="testi-vert">Client Voices</span>
+        <div class="testi-prog">
+          <div class="testi-pfill" id="testi-pfill" style="height:33.3%"></div>
+        </div>
+      </div>
+
+      <div class="testi-right">
+        <div style="margin-bottom:52px;" class="sr">
+          <div class="eyebrow">Client Voices</div>
+          <h2 class="H2" id="testi-h" style="margin-bottom:0;">What Our Clients<br>Say About Us</h2>
+        </div>
+
+        <div class="testi-badge sr d1" id="testi-badge">Meridian Energy Holdings</div>
+
+        <blockquote class="testi-quote sr d2" id="testi-quote"></blockquote>
+
+        <div class="testi-foot sr d3">
+          <div class="testi-author">
+            <div class="testi-aline" aria-hidden="true"></div>
+            <div>
+              <div class="testi-aname" id="testi-name">Adaeze Okonkwo</div>
+              <div class="testi-arole" id="testi-role">CFO, Meridian Energy Holdings</div>
+            </div>
+          </div>
+          <div class="testi-nav" role="group" aria-label="Testimonial navigation">
+            <button class="testi-btn" id="testi-prev" aria-label="Previous testimonial">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="testi-btn" id="testi-next" aria-label="Next testimonial">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ TEAM — adapted from sample1 ══ -->
+<section id="team" aria-labelledby="team-h">
+  <div class="W">
+
+    <div class="team-hd">
+      <div class="sr">
+        <div class="eyebrow">Our People</div>
+        <h2 class="H2" id="team-h">A Powerhouse<br>of Expertise</h2>
+      </div>
+      <p class="team-intro sr d2">
+        Our exceptional legal professionals bring decades of combined experience across Nigeria's most complex commercial sectors. Hover a photo or name to connect.
+      </p>
+    </div>
+
+    <div class="tsg-layout">
+
+      <!-- Photo grid (3 staggered columns) -->
+      <div class="tsg-photos" aria-hidden="true">
+
+        <!-- Col 1: MO (0), CA (3), KC (6) -->
+        <div class="tsg-col">
+          <div class="tsp tsp--a" data-id="0">
+            <img src="https://starklegalng.com/wp-content/uploads/2025/08/MO-scaled.jpg" alt="Mojisola Olugbemi" loading="lazy">
+          </div>
+          <div class="tsp tsp--a" data-id="3">
+            <img src="https://starklegalng.com/wp-content/uploads/2025/08/Caleb-scaled.jpg" alt="Caleb Aluya" loading="lazy">
+          </div>
+          <div class="tsp tsp--a" data-id="6">
+            <img src="https://starklegalng.com/wp-content/uploads/2025/08/Kingsley--scaled.jpg" alt="Kingsley Chidume" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Col 2: AA (1), CO (4), GO (7) — +64px stagger -->
+        <div class="tsg-col tsg-col--b">
+          <div class="tsp tsp--b" data-id="1">
+            <img src="https://starklegalng.com/wp-content/uploads/2025/08/AA-scaled.jpg" alt="Ayobamidele Akande" loading="lazy">
+          </div>
+          <div class="tsp tsp--b" data-id="4">
+            <img src="https://starklegalng.com/wp-content/uploads/2025/08/Chisom-scaled.jpg" alt="Chisom Okeke" loading="lazy">
+          </div>
+          <div class="tsp tsp--b" data-id="7">
+            <img src="https://starklegalng.com/wp-content/uploads/2025/08/Goodness_-scaled.jpg" alt="Goodness Okoye-Egbe" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Col 3: VA (2), EO (5), OA (8) — +32px stagger -->
+        <div class="tsg-col tsg-col--c">
+          <div class="tsp tsp--c" data-id="2">
+            <img src="https://starklegalng.com/wp-content/uploads/2025/08/Victor-scaled.jpg" alt="Victor Abasiodiong" loading="lazy">
+          </div>
+          <div class="tsp tsp--c" data-id="5">
+            <img src="https://starklegalng.com/wp-content/uploads/2025/08/Emmanuel-scaled.jpg" alt="Emmanuel Olatunde" loading="lazy">
+          </div>
+          <div class="tsp tsp--c" data-id="8">
+            <img src="https://starklegalng.com/wp-content/uploads/2025/08/Uju-scaled.jpg" alt="Obianuju Ajagbo" loading="lazy">
+          </div>
+        </div>
+
+      </div><!-- /tsg-photos -->
+
+      <!-- Name list -->
+      <div class="tsg-names" role="list">
+
+        <div class="tnr sr" data-id="0" role="listitem">
+          <div class="tnr-top">
+            <span class="tnr-bar" aria-hidden="true"></span>
+            <span class="tnr-name">Mojisola Olugbemi</span>
+            <div class="tnr-socials" aria-label="Mojisola Olugbemi social links">
+              <a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener">
+                <svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="tnr-role">Principal Partner</div>
+        </div>
+
+        <div class="tnr sr d1" data-id="1" role="listitem">
+          <div class="tnr-top">
+            <span class="tnr-bar" aria-hidden="true"></span>
+            <span class="tnr-name">Ayobamidele Akande</span>
+            <div class="tnr-socials" aria-label="Ayobamidele Akande social links">
+              <a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a>
+            </div>
+          </div>
+          <div class="tnr-role">Managing Partner</div>
+        </div>
+
+        <div class="tnr sr d2" data-id="2" role="listitem">
+          <div class="tnr-top">
+            <span class="tnr-bar" aria-hidden="true"></span>
+            <span class="tnr-name">Victor Abasiodiong</span>
+            <div class="tnr-socials"><a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a></div>
+          </div>
+          <div class="tnr-role">Senior Associate</div>
+        </div>
+
+        <div class="tnr sr d3" data-id="3" role="listitem">
+          <div class="tnr-top">
+            <span class="tnr-bar" aria-hidden="true"></span>
+            <span class="tnr-name">Caleb Aluya</span>
+            <div class="tnr-socials"><a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a></div>
+          </div>
+          <div class="tnr-role">Senior Associate</div>
+        </div>
+
+        <div class="tnr sr" data-id="4" role="listitem">
+          <div class="tnr-top">
+            <span class="tnr-bar" aria-hidden="true"></span>
+            <span class="tnr-name">Chisom Okeke</span>
+            <div class="tnr-socials"><a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a></div>
+          </div>
+          <div class="tnr-role">Senior Associate</div>
+        </div>
+
+        <div class="tnr sr d1" data-id="5" role="listitem">
+          <div class="tnr-top">
+            <span class="tnr-bar" aria-hidden="true"></span>
+            <span class="tnr-name">Emmanuel Olatunde</span>
+            <div class="tnr-socials"><a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a></div>
+          </div>
+          <div class="tnr-role">Associate</div>
+        </div>
+
+        <div class="tnr sr d2" data-id="6" role="listitem">
+          <div class="tnr-top">
+            <span class="tnr-bar" aria-hidden="true"></span>
+            <span class="tnr-name">Kingsley Chidume</span>
+            <div class="tnr-socials"><a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a></div>
+          </div>
+          <div class="tnr-role">Associate</div>
+        </div>
+
+        <div class="tnr sr d3" data-id="7" role="listitem">
+          <div class="tnr-top">
+            <span class="tnr-bar" aria-hidden="true"></span>
+            <span class="tnr-name">Goodness Okoye-Egbe</span>
+            <div class="tnr-socials"><a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a></div>
+          </div>
+          <div class="tnr-role">Associate</div>
+        </div>
+
+        <div class="tnr sr" data-id="8" role="listitem">
+          <div class="tnr-top">
+            <span class="tnr-bar" aria-hidden="true"></span>
+            <span class="tnr-name">Obianuju Ajagbo</span>
+            <div class="tnr-socials"><a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a></div>
+          </div>
+          <div class="tnr-role">Associate</div>
+        </div>
+
+      </div><!-- /tsg-names -->
+    </div><!-- /tsg-layout -->
+  </div>
+</section>
+
+<!-- ══ AWARDS ══════════════════════════════════ -->
+<section id="awards" aria-labelledby="awards-h">
+  <div class="W">
+    <div class="awards-inner">
+      <div class="sr">
+        <div class="eyebrow eyebrow--dim">Recognition</div>
+        <h2 class="H2 H2--lt" id="awards-h">Award-Winning<br>Practice</h2>
+        <p class="awards-body">
+          Our commitment to excellence has been consistently recognised by leading legal industry bodies in Nigeria and internationally, from 2019 through to the present day.
+        </p>
+        <a href="#contact" class="btn btn-gold">
+          Work With Us
+          <svg class="ico-arr" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <div class="award-list">
+        <div class="award sr"><div class="award-yr">2024</div><div><div class="award-title">Law Firm of the Year — Small Practice</div><div class="award-org">Nigerian Legal Awards</div></div></div>
+        <div class="award sr d1"><div class="award-yr">2023</div><div><div class="award-title">Aviation Team of the Year</div><div class="award-org">International Legal Awards</div></div></div>
+        <div class="award sr d2"><div class="award-yr">2022</div><div><div class="award-title">Managing Partner of the Year</div><div class="award-org">Nigerian Legal Awards</div></div></div>
+        <div class="award sr d3"><div class="award-yr">2021</div><div><div class="award-title">Law Firm of the Year — Small Practice</div><div class="award-org">Nigerian Legal Awards</div></div></div>
+        <div class="award sr"><div class="award-yr">2020</div><div><div class="award-title">Aviation Team of the Year (Local)</div><div class="award-org">Nigerian Legal Awards</div></div></div>
+        <div class="award sr d1"><div class="award-yr">2019</div><div><div class="award-title">Law Firm of the Year — Small Practice</div><div class="award-org">Nigerian Legal Awards</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT — with D3 rotating globe (sample5) ══ -->
+<section id="contact" aria-labelledby="contact-h">
+  <div class="W">
+    <div class="contact-grid">
+
+      <!-- Left: heading + globe + contact details -->
+      <div class="sr">
+        <div class="eyebrow">Get In Touch</div>
+        <h2 class="H2" id="contact-h">Begin a<br>Conversation</h2>
+        <p class="contact-body">
+          Whether you need strategic legal counsel, transaction support, or dispute resolution, our team is ready to understand your situation and provide the right guidance.
+        </p>
+
+        <!-- Globe (sample5 D3 adaptation) -->
+        <div class="globe-wrap" id="globe-wrap">
+          <canvas id="globe-canvas" aria-label="Interactive world map showing Stark Legal's reach"></canvas>
+          <div class="globe-hint" aria-hidden="true">Drag to rotate · Scroll to zoom</div>
+        </div>
+
+        <!-- Contact details below globe -->
+        <div class="contact-details">
+          <div class="cd">
+            <div class="cd-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.5 3h3.5l1.5 4-2 1.5a9 9 0 004 4L12 10.5l4 1.5v3.5a1.5 1.5 0 01-1.5 1.5A14.5 14.5 0 012 4.5 1.5 1.5 0 013.5 3z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div class="cd-lbl">Phone</div>
+              <div class="cd-val"><a href="tel:+2349096851318">+234 909 685 1318</a><br><a href="tel:+2348038427202">+234 803 842 7202</a></div>
+            </div>
+          </div>
+          <div class="cd">
+            <div class="cd-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1.5" y="3.5" width="15" height="11" rx="1" stroke="currentColor" stroke-width="1.3"/><path d="M1.5 5.5l7 5 7-5" stroke="currentColor" stroke-width="1.3"/></svg>
+            </div>
+            <div>
+              <div class="cd-lbl">Email</div>
+              <div class="cd-val"><a href="mailto:info@starklegalng.com">info@starklegalng.com</a><br><a href="mailto:admin@starklegalng.com">admin@starklegalng.com</a></div>
+            </div>
+          </div>
+          <div class="cd">
+            <div class="cd-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 1.5C6.5 1.5 4 3.6 4 6.7 4 11.3 9 16.5 9 16.5s5-5.2 5-9.8C14 3.6 11.5 1.5 9 1.5z" stroke="currentColor" stroke-width="1.3"/><circle cx="9" cy="6.8" r="2" stroke="currentColor" stroke-width="1.3"/></svg>
+            </div>
+            <div>
+              <div class="cd-lbl">Offices</div>
+              <div class="office-tags">
+                <span class="office-tag">Lagos</span>
+                <span class="office-tag">Abuja</span>
+                <span class="office-tag">Port-Harcourt</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: contact form -->
+      <div class="sr d2">
+        <form id="cform" novalidate>
+          <div class="f-row">
+            <div class="fg"><label for="fn">First Name</label><input id="fn" type="text" placeholder="John" autocomplete="given-name"></div>
+            <div class="fg"><label for="ln">Last Name</label><input id="ln" type="text" placeholder="Doe" autocomplete="family-name"></div>
+          </div>
+          <div class="fg"><label for="em">Email Address</label><input id="em" type="email" placeholder="john@company.com" autocomplete="email"></div>
+          <div class="fg"><label for="org">Organisation</label><input id="org" type="text" placeholder="Your company or organisation" autocomplete="organization"></div>
+          <div class="fg">
+            <label for="area">Practice Area</label>
+            <select id="area">
+              <option value="">Select a Practice Area</option>
+              <option>Energy</option>
+              <option>Transport &amp; Aviation</option>
+              <option>Financial Services</option>
+              <option>Corporate &amp; Commercial</option>
+              <option>Dispute Resolution</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg"><label for="msg">Message</label><textarea id="msg" placeholder="Briefly describe your legal matter..."></textarea></div>
+          <button type="submit" class="f-submit">Send Message</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══════════════════════════════════ -->
+<footer id="footer" aria-label="Footer">
+  <div class="W">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          <img src="https://starklegalng.com/wp-content/uploads/2025/05/starklegal-icon.png"
+               alt="" class="footer-icon" aria-hidden="true" width="38" height="38">
+          <div class="footer-name">Stark Legal</div>
+        </div>
+        <p class="footer-tag">"Pursue Excellence<br>and Success will Follow"</p>
+        <div class="footer-socials">
+          <a href="https://facebook.com" class="fsoc" aria-label="Facebook" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M9.5 1H7.5A3 3 0 004.5 4v2H2.5v3h2v5h3V9h2l.5-3H7.5V4a1 1 0 011-1h1V1z"/></svg></a>
+          <a href="https://x.com" class="fsoc" aria-label="X (Twitter)" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M11 1.5h2.5L8.4 7l5.6 6.5H10L6.5 9l-4 4.5H0l5.4-6L.2 1.5H4L7 6l4-4.5z"/></svg></a>
+          <a href="https://linkedin.com" class="fsoc" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a>
+          <a href="https://instagram.com" class="fsoc" aria-label="Instagram" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><rect x=".75" y=".75" width="12.5" height="12.5" rx="3"/><circle cx="7" cy="7" r="3"/><circle cx="10.5" cy="3.5" r=".5" fill="currentColor" stroke="none"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <div class="fc-title">Practice Areas</div>
+        <ul class="fc-links">
+          <li><a href="#practice">Energy</a></li>
+          <li><a href="#practice">Transport &amp; Aviation</a></li>
+          <li><a href="#practice">Financial Services</a></li>
+          <li><a href="#practice">Corporate &amp; Commercial</a></li>
+          <li><a href="#practice">Dispute Resolution</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="fc-title">The Firm</div>
+        <ul class="fc-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#team">Our People</a></li>
+          <li><a href="#awards">Recognition</a></li>
+          <li><a href="#testi">Client Voices</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="fc-title">Contact</div>
+        <ul class="fc-links">
+          <li><a href="tel:+2349096851318">+234 909 685 1318</a></li>
+          <li><a href="tel:+2348038427202">+234 803 842 7202</a></li>
+          <li><a href="mailto:info@starklegalng.com">info@starklegalng.com</a></li>
+          <li><a href="mailto:admin@starklegalng.com">admin@starklegalng.com</a></li>
+          <li style="color:rgba(255,255,255,.18);margin-top:10px;font-size:.8rem;letter-spacing:.05em;">Lagos · Abuja · Port-Harcourt</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2024 Stark Legal. All rights reserved.</div>
+      <div class="footer-disc">The information on this site does not constitute legal advice and should not be relied upon as such. Stark Legal is regulated by the Nigerian Bar Association.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- D3.js for the globe -->
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+
+<!-- ══ SCRIPTS ══════════════════════════════════ -->
+<script>
+/* ── NAV scroll effect ──────────────────────── */
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => nav.classList.toggle('stuck', scrollY > 60), { passive: true });
+
+/* ── Mobile menu ────────────────────────────── */
+const burger  = document.getElementById('burger');
+const mobMenu = document.getElementById('mob-menu');
+let mobOpen   = false;
+
+burger.addEventListener('click', () => {
+  mobOpen = !mobOpen;
+  burger.classList.toggle('open', mobOpen);
+  burger.setAttribute('aria-expanded', mobOpen);
+  if (mobOpen) {
+    mobMenu.classList.add('open');
+    requestAnimationFrame(() => mobMenu.classList.add('visible'));
+    document.body.style.overflow = 'hidden';
+  } else { closeMob(); }
+});
+function closeMob() {
+  mobOpen = false;
+  burger.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+  mobMenu.classList.remove('visible');
+  document.body.style.overflow = '';
+  setTimeout(() => mobMenu.classList.remove('open'), 420);
+}
+
+/* ── Smooth scroll with nav offset ─────────── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (!id || id === '#') return;
+    const target = document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'));
+    window.scrollTo({ top: target.getBoundingClientRect().top + scrollY - navH, behavior: 'smooth' });
+    closeMob();
+  });
+});
+
+/* ── Universal scroll reveal ─────────────────── */
+const srObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); srObs.unobserve(e.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.sr').forEach(el => srObs.observe(el));
+
+/* ── Hero geo parallax ──────────────────────── */
+const heroGeo = document.querySelector('.hero-geo');
+addEventListener('scroll', () => {
+  if (heroGeo && scrollY < innerHeight) heroGeo.style.transform = `translateY(${scrollY * 0.12}px)`;
+}, { passive: true });
+
+/* ── Animated counters ──────────────────────── */
+const cntObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target, target = +el.dataset.count, suf = el.dataset.suf || '';
+    let cur = 0; const step = target / 44;
+    const t = setInterval(() => { cur = Math.min(cur + step, target); el.textContent = Math.ceil(cur) + suf; if (cur >= target) clearInterval(t); }, 32);
+    cntObs.unobserve(el);
+  });
+}, { threshold: 0.6 });
+document.querySelectorAll('[data-count]').forEach(c => cntObs.observe(c));
+
+/* ══════════════════════════════════════════════
+   GALLERY — scroll-driven zoom parallax (sample2)
+   300vh section: 7 layers scale from 1 → maxScale
+   as scroll progress moves 0 → 1 through the zone.
+══════════════════════════════════════════════ */
+const galZone   = document.getElementById('gal-zone');
+const galLayers = ['gl0','gl1','gl2','gl3','gl4','gl5','gl6'].map(id => document.getElementById(id));
+const GALL_MAX  = [4, 5, 6, 5, 6, 8, 9];
+
+function updateGallery() {
+  if (!galZone) return;
+  const rect  = galZone.getBoundingClientRect();
+  const total = galZone.offsetHeight - window.innerHeight;
+  if (total <= 0) return;
+  const prog  = Math.max(0, Math.min(1, -rect.top / total));
+  galLayers.forEach((layer, i) => {
+    if (!layer) return;
+    const scale = 1 + (GALL_MAX[i] - 1) * prog;
+    layer.style.transform = `scale(${scale.toFixed(4)})`;
+  });
+}
+window.addEventListener('scroll', updateGallery, { passive: true });
+window.addEventListener('resize', updateGallery, { passive: true });
+updateGallery();
+
+/* ══════════════════════════════════════════════
+   TESTIMONIALS — adapted from sample3
+══════════════════════════════════════════════ */
+const T_DATA = [
+  {
+    quote: "Stark Legal's energy sector expertise proved indispensable during our most complex licensing negotiation. Their strategic counsel consistently went beyond the brief.",
+    name:  "Adaeze Okonkwo",
+    role:  "Chief Financial Officer",
+    co:    "Meridian Energy Holdings"
+  },
+  {
+    quote: "From the initial consultation to final resolution, the team demonstrated exceptional precision and commercial awareness at every phase of our dispute. Absolutely first-rate advocacy.",
+    name:  "Emmanuel Fashola",
+    role:  "Chief Executive Officer",
+    co:    "TransAfrica Logistics"
+  },
+  {
+    quote: "Their command of Nigeria's financial regulatory landscape is unmatched. Stark Legal is the only firm we trust with our most sensitive capital market transactions.",
+    name:  "Dr. Olumide Adekunle",
+    role:  "Group Managing Director",
+    co:    "Pelican Capital Partners"
+  }
+];
+
+let tIdx = 0, tTimer;
+
+function renderTestimonial(i) {
+  const t = T_DATA[i];
+  document.getElementById('testi-bgnum').textContent = String(i + 1).padStart(2, '0');
+  document.getElementById('testi-badge').textContent = t.co;
+  const qEl = document.getElementById('testi-quote');
+  qEl.innerHTML = t.quote.split(' ').map((w, j) =>
+    `<span class="tw" style="animation-delay:${j * 0.048}s">${w}</span>`
+  ).join(' ');
+  document.getElementById('testi-name').textContent = t.name;
+  document.getElementById('testi-role').textContent = `${t.role}, ${t.co}`;
+  document.getElementById('testi-pfill').style.height = `${(i + 1) / T_DATA.length * 100}%`;
+}
+
+function tGo(dir) {
+  tIdx = (tIdx + dir + T_DATA.length) % T_DATA.length;
+  renderTestimonial(tIdx);
+  clearInterval(tTimer);
+  tTimer = setInterval(() => tGo(1), 6200);
+}
+
+renderTestimonial(0);
+tTimer = setInterval(() => tGo(1), 6200);
+
+document.getElementById('testi-prev').onclick = () => tGo(-1);
+document.getElementById('testi-next').onclick = () => tGo(1);
+
+/* ══════════════════════════════════════════════
+   TEAM SHOWCASE — adapted from sample1
+══════════════════════════════════════════════ */
+const tspEls = document.querySelectorAll('.tsp');
+const tnrEls = document.querySelectorAll('.tnr');
+
+function teamHighlight(id) {
+  tspEls.forEach(el => {
+    el.classList.toggle('hi-on',  el.dataset.id === id);
+    el.classList.toggle('hi-off', id !== null && el.dataset.id !== id);
+  });
+  tnrEls.forEach(el => {
+    el.classList.toggle('hi-on',  el.dataset.id === id);
+    el.classList.toggle('hi-off', id !== null && el.dataset.id !== id);
+  });
+}
+
+tspEls.forEach(el => {
+  el.addEventListener('mouseenter', () => teamHighlight(el.dataset.id));
+  el.addEventListener('mouseleave', () => teamHighlight(null));
+});
+tnrEls.forEach(el => {
+  el.addEventListener('mouseenter', () => teamHighlight(el.dataset.id));
+  el.addEventListener('mouseleave', () => teamHighlight(null));
+});
+
+/* ── Contact form ────────────────────────────── */
+document.getElementById('cform').addEventListener('submit', e => {
+  e.preventDefault();
+  const btn = e.target.querySelector('.f-submit'), orig = btn.textContent;
+  btn.textContent = 'Message Sent ✓';
+  btn.style.cssText = 'background:var(--gold);border-color:var(--gold);color:var(--navy);cursor:default;pointer-events:none;';
+  setTimeout(() => { btn.textContent = orig; btn.style.cssText = ''; e.target.reset(); }, 3500);
+});
+
+/* ══════════════════════════════════════════════
+   GLOBE — adapted from sample5 (D3.js wireframe globe)
+   Rotating halftone-dotted Earth with natural-earth land data.
+   Colours adapted to site palette: navy ocean, gold details.
+══════════════════════════════════════════════ */
+async function initGlobe() {
+  const canvas = document.getElementById('globe-canvas');
+  if (!canvas || typeof d3 === 'undefined') return;
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  /* Size canvas to container with 0.62 aspect ratio */
+  const wrap = canvas.parentElement;
+  const CW   = wrap.clientWidth;
+  const CH   = Math.round(CW * 0.62);
+  const dpr  = window.devicePixelRatio || 1;
+
+  canvas.width        = CW * dpr;
+  canvas.height       = CH * dpr;
+  canvas.style.width  = CW + 'px';
+  canvas.style.height = CH + 'px';
+  ctx.scale(dpr, dpr);
+
+  const BASE_R = Math.min(CW, CH) / 2 * 0.86;
+  const cx = CW / 2, cy = CH / 2;
+
+  /* Palette: navy ocean, gold outlines/dots */
+  const C_OCEAN  = '#091524';
+  const C_BORDER = 'rgba(200,169,110,0.8)';
+  const C_GRAT   = 'rgba(200,169,110,0.08)';
+  const C_LAND   = 'rgba(200,169,110,0.28)';
+  const C_DOT    = 'rgba(200,169,110,0.65)';
+
+  const proj = d3.geoOrthographic()
+    .scale(BASE_R)
+    .translate([cx, cy])
+    .clipAngle(90);
+
+  const path      = d3.geoPath().projection(proj).context(ctx);
+  const graticule = d3.geoGraticule();
+
+  let landFeatures = null;
+  const allDots    = [];
+  const rotation   = [20, -10]; /* start centred on Africa/Europe */
+  let autoRotate   = true;
+
+  /* Point-in-polygon (ray casting) */
+  function pip(pt, ring) {
+    const [px, py] = pt;
+    let inside = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const [xi, yi] = ring[i], [xj, yj] = ring[j];
+      if (yi > py !== yj > py && px < ((xj - xi) * (py - yi)) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  }
+
+  function pointInFeature(pt, feat) {
+    const g = feat.geometry;
+    if (g.type === 'Polygon') {
+      if (!pip(pt, g.coordinates[0])) return false;
+      for (let i = 1; i < g.coordinates.length; i++) if (pip(pt, g.coordinates[i])) return false;
+      return true;
+    }
+    if (g.type === 'MultiPolygon') {
+      for (const poly of g.coordinates) {
+        if (pip(pt, poly[0])) {
+          let inHole = false;
+          for (let i = 1; i < poly.length; i++) { if (pip(pt, poly[i])) { inHole = true; break; } }
+          if (!inHole) return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  function genDots(feat, spacing) {
+    const dots = [];
+    const [[minLng, minLat], [maxLng, maxLat]] = d3.geoBounds(feat);
+    const step = spacing * 0.08;
+    for (let lng = minLng; lng <= maxLng; lng += step) {
+      for (let lat = minLat; lat <= maxLat; lat += step) {
+        if (pointInFeature([lng, lat], feat)) dots.push([lng, lat]);
+      }
+    }
+    return dots;
+  }
+
+  function render() {
+    ctx.clearRect(0, 0, CW, CH);
+    const sc = proj.scale();
+    const sf = sc / BASE_R;
+
+    /* Ocean sphere */
+    ctx.beginPath();
+    ctx.arc(cx, cy, sc, 0, 2 * Math.PI);
+    ctx.fillStyle = C_OCEAN;
+    ctx.fill();
+    ctx.strokeStyle = C_BORDER;
+    ctx.lineWidth = 1.5 * sf;
+    ctx.stroke();
+
+    if (!landFeatures) return;
+
+    /* Graticule */
+    ctx.beginPath();
+    path(graticule());
+    ctx.strokeStyle = C_GRAT;
+    ctx.lineWidth = 0.7 * sf;
+    ctx.stroke();
+
+    /* Land outlines */
+    ctx.beginPath();
+    landFeatures.features.forEach(f => path(f));
+    ctx.strokeStyle = C_LAND;
+    ctx.lineWidth = 0.75 * sf;
+    ctx.stroke();
+
+    /* Halftone dots on land */
+    allDots.forEach(([lng, lat]) => {
+      const p = proj([lng, lat]);
+      if (p && p[0] >= 0 && p[0] <= CW && p[1] >= 0 && p[1] <= CH) {
+        ctx.beginPath();
+        ctx.arc(p[0], p[1], 1.05 * sf, 0, 2 * Math.PI);
+        ctx.fillStyle = C_DOT;
+        ctx.fill();
+      }
+    });
+  }
+
+  /* Load Natural Earth land GeoJSON */
+  try {
+    const resp = await fetch(
+      'https://raw.githubusercontent.com/martynafford/natural-earth-geojson/refs/heads/master/110m/physical/ne_110m_land.json'
+    );
+    if (!resp.ok) throw new Error('fetch failed');
+    landFeatures = await resp.json();
+    landFeatures.features.forEach(f => {
+      genDots(f, 18).forEach(d => allDots.push(d));
+    });
+    render();
+  } catch (err) {
+    console.warn('[Globe] Could not load land data:', err.message);
+    render(); /* draw ocean only */
+  }
+
+  /* Auto-rotation via d3.timer */
+  const rotTimer = d3.timer(() => {
+    if (autoRotate) {
+      rotation[0] += 0.38;
+      proj.rotate(rotation);
+      render();
+    }
+  });
+
+  /* Mouse drag */
+  canvas.addEventListener('mousedown', e => {
+    autoRotate = false;
+    const sx = e.clientX, sy = e.clientY;
+    const r0 = [...rotation];
+    const mm = ev => {
+      rotation[0] = r0[0] + (ev.clientX - sx) * 0.45;
+      rotation[1] = Math.max(-90, Math.min(90, r0[1] - (ev.clientY - sy) * 0.45));
+      proj.rotate(rotation);
+      render();
+    };
+    const mu = () => {
+      document.removeEventListener('mousemove', mm);
+      document.removeEventListener('mouseup', mu);
+      setTimeout(() => { autoRotate = true; }, 20);
+    };
+    document.addEventListener('mousemove', mm);
+    document.addEventListener('mouseup', mu);
+  });
+
+  /* Touch drag */
+  canvas.addEventListener('touchstart', e => {
+    autoRotate = false;
+    const t0 = e.touches[0];
+    const sx = t0.clientX, sy = t0.clientY;
+    const r0 = [...rotation];
+    const tm = ev => {
+      const t = ev.touches[0];
+      rotation[0] = r0[0] + (t.clientX - sx) * 0.45;
+      rotation[1] = Math.max(-90, Math.min(90, r0[1] - (t.clientY - sy) * 0.45));
+      proj.rotate(rotation);
+      render();
+    };
+    const te = () => {
+      canvas.removeEventListener('touchmove', tm);
+      canvas.removeEventListener('touchend', te);
+      setTimeout(() => { autoRotate = true; }, 20);
+    };
+    canvas.addEventListener('touchmove', tm, { passive: true });
+    canvas.addEventListener('touchend', te);
+  }, { passive: true });
+
+  /* Scroll to zoom */
+  canvas.addEventListener('wheel', e => {
+    e.preventDefault();
+    const factor = e.deltaY > 0 ? 0.9 : 1.1;
+    proj.scale(Math.max(BASE_R * 0.45, Math.min(BASE_R * 3, proj.scale() * factor)));
+    render();
+  }, { passive: false });
+
+  window.addEventListener('beforeunload', () => rotTimer.stop());
+}
+
+/* Lazy-init globe when contact section enters viewport */
+const globeObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      initGlobe();
+      globeObs.disconnect();
+    }
+  });
+}, { threshold: 0.05 });
+const globeCanvas = document.getElementById('globe-canvas');
+if (globeCanvas) globeObs.observe(globeCanvas);
+</script>
+</body>
+</html>
