@@ -42,7 +42,11 @@
       --ease:   cubic-bezier(.4,0,.2,1);
     }
 
-    html { scroll-behavior: smooth; font-size: 16px; }
+    html {
+      scroll-behavior: smooth; font-size: 16px;
+      overflow-x: hidden; /* primary horizontal-scroll lock */
+      max-width: 100%;
+    }
 
     body {
       font-family: var(--sans);
@@ -50,11 +54,12 @@
       background: var(--cream);
       line-height: 1.6;
       overflow-x: hidden;
+      max-width: 100%;
       -webkit-font-smoothing: antialiased;
     }
 
     a { text-decoration: none; color: inherit; }
-    img { display: block; max-width: 100%; }
+    img { display: block; max-width: 100%; height: auto; }
     button, input, textarea, select { font-family: inherit; }
 
     /* ══════════════════════════════════════════
@@ -62,9 +67,10 @@
     ══════════════════════════════════════════ */
     .W {
       width: 100%;
-      max-width: 1320px;
+      max-width: min(1320px, 100%);
       margin: 0 auto;
       padding: 0 52px;
+      box-sizing: border-box;
     }
 
     /* ══════════════════════════════════════════
@@ -273,11 +279,9 @@
     /* Logo at bottom */
     .mob-brand {
       position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
-      display: flex; align-items: center; gap: 10px;
-      opacity: .18; pointer-events: none; white-space: nowrap;
+      opacity: .18; pointer-events: none;
     }
-    .mob-brand-icon { width: 26px; height: 26px; object-fit: contain; }
-    .mob-brand-wm   { height: 13px; width: auto; }
+    .mob-brand-icon { width: 28px; height: 28px; object-fit: contain; display: block; }
 
     /* ══════════════════════════════════════════
        HERO
@@ -367,12 +371,14 @@
     /* ══════════════════════════════════════════
        ABOUT
     ══════════════════════════════════════════ */
-    #about { padding: var(--sec-py) 0; background: var(--cream); }
+    #about { padding: var(--sec-py) 0; background: var(--cream); overflow-x: clip; }
 
     .about-grid {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 100px; align-items: center;
+      min-width: 0;
     }
+    .about-grid > * { min-width: 0; }
     .about-body { font-size: 1.05rem; color: var(--ink-2); line-height: 1.85; margin-bottom: 22px; }
 
     .pills { display: flex; gap: 8px; flex-wrap: wrap; margin: 28px 0 36px; }
@@ -557,7 +563,7 @@
     /* ══════════════════════════════════════════
        PRACTICE AREAS
     ══════════════════════════════════════════ */
-    #practice { padding: var(--sec-py) 0; background: var(--cream-dk); }
+    #practice { padding: var(--sec-py) 0; background: var(--cream-dk); overflow-x: clip; }
 
     .practice-hd {
       display: flex; align-items: flex-end; justify-content: space-between;
@@ -598,7 +604,8 @@
       width: 700px; height: 700px; border-radius: 50%;
       background: radial-gradient(circle, rgba(200,169,110,.065) 0%, transparent 65%); pointer-events: none;
     }
-    .approach-inner { display: grid; grid-template-columns: 380px 1fr; gap: 100px; align-items: start; }
+    .approach-inner { display: grid; grid-template-columns: 380px 1fr; gap: 100px; align-items: start; min-width: 0; }
+    .approach-inner > * { min-width: 0; }
     .approach-body { font-size: .975rem; color: rgba(255,255,255,.48); line-height: 1.82; margin-bottom: 36px; }
 
     .steps { display: flex; flex-direction: column; gap: 3px; }
@@ -718,7 +725,7 @@
     /* ══════════════════════════════════════════
        TEAM SHOWCASE — adapted from sample1
     ══════════════════════════════════════════ */
-    #team { padding: var(--sec-py) 0; background: var(--cream-dk); }
+    #team { padding: var(--sec-py) 0; background: var(--cream-dk); overflow-x: clip; }
 
     .team-hd {
       display: flex; align-items: flex-end; justify-content: space-between;
@@ -731,9 +738,10 @@
       grid-template-columns: auto 1fr;
       gap: 72px;
       align-items: start;
+      min-width: 0;
     }
 
-    .tsg-photos { display: flex; gap: 10px; flex-shrink: 0; }
+    .tsg-photos { display: flex; gap: 10px; flex-shrink: 0; max-width: 100%; overflow-x: auto; }
 
     .tsg-col { display: flex; flex-direction: column; gap: 10px; }
     .tsg-col--b { margin-top: 64px; }
@@ -842,7 +850,7 @@
     /* ══════════════════════════════════════════
        CONTACT — with D3 globe (sample5)
     ══════════════════════════════════════════ */
-    #contact { padding: var(--sec-py) 0; background: var(--cream); }
+    #contact { padding: var(--sec-py) 0; background: var(--cream); overflow-x: clip; }
     .contact-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 80px; align-items: stretch; }
     /* Right column stretches full height so newsletter can sit at the bottom */
     #contact .contact-grid > .sr.d2 { display: flex; flex-direction: column; }
@@ -1119,7 +1127,7 @@
     .pg-btn:hover { border-color: var(--gold); color: var(--gold); }
 
     /* ══ NEWS / PUBLICATIONS section ════════════════════ */
-    #news { background: var(--cream); padding: var(--sec-py) 0; }
+    #news { background: var(--cream); padding: var(--sec-py) 0; overflow-x: clip; }
     .news-hd {
       display: flex; align-items: flex-end;
       justify-content: space-between; gap: 40px;
@@ -1185,11 +1193,13 @@
     .news-toggle.open svg { transform: rotate(180deg); }
 
     /* ══ FAQ section ════════════════════════════════════ */
-    #faq { background: var(--navy); padding: var(--sec-py) 0; }
+    #faq { background: var(--navy); padding: var(--sec-py) 0; overflow-x: clip; }
     .faq-inner {
       display: grid; grid-template-columns: 360px 1fr;
       gap: 100px; align-items: start;
+      min-width: 0;
     }
+    .faq-inner > * { min-width: 0; }
     .faq-intro { font-size: .975rem; color: rgba(255,255,255,.44); line-height: 1.82; margin-top: 22px; }
     .faq-list { display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,.08); }
     .faq-item { border-bottom: 1px solid rgba(255,255,255,.08); }
@@ -1383,8 +1393,6 @@
   <div class="mob-brand" aria-hidden="true">
     <img src="https://starklegalng.com/wp-content/uploads/2025/05/starklegal-icon.png"
          class="mob-brand-icon" alt="">
-    <img src="https://res.cloudinary.com/daglfnssf/image/upload/v1777450729/starklegal/brand/starklegal-wordmark.png"
-         class="mob-brand-wm" alt="Stark Legal">
   </div>
 </div>
 
