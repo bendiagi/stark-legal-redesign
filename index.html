@@ -2746,12 +2746,39 @@ tnrEls.forEach(el => {
 });
 
 /* ── Contact form ────────────────────────────── */
-document.getElementById('cform').addEventListener('submit', e => {
+document.getElementById('cform').addEventListener('submit', async e => {
   e.preventDefault();
   const btn = e.target.querySelector('.f-submit'), orig = btn.textContent;
-  btn.textContent = 'Message Sent ✓';
-  btn.style.cssText = 'background:var(--gold);border-color:var(--gold);color:var(--navy);cursor:default;pointer-events:none;';
-  setTimeout(() => { btn.textContent = orig; btn.style.cssText = ''; e.target.reset(); }, 3500);
+  btn.textContent = 'Sending…';
+  btn.style.cssText = 'opacity:.65;cursor:default;pointer-events:none;';
+
+  const payload = {
+    firstName:    document.getElementById('fn').value.trim(),
+    lastName:     document.getElementById('ln').value.trim(),
+    email:        document.getElementById('em').value.trim(),
+    organisation: document.getElementById('org').value.trim(),
+    area:         document.getElementById('area').value,
+    message:      document.getElementById('msg').value.trim(),
+  };
+
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (res.ok) {
+      btn.textContent = 'Message Sent ✓';
+      btn.style.cssText = 'background:var(--gold);border-color:var(--gold);color:var(--navy);cursor:default;pointer-events:none;';
+      setTimeout(() => { btn.textContent = orig; btn.style.cssText = ''; e.target.reset(); }, 3500);
+    } else {
+      throw new Error('non-ok');
+    }
+  } catch {
+    btn.textContent = 'Failed — Please Try Again';
+    btn.style.cssText = 'background:#a33;border-color:#a33;color:#fff;cursor:default;pointer-events:none;';
+    setTimeout(() => { btn.textContent = orig; btn.style.cssText = ''; }, 3500);
+  }
 });
 
 /* ══════════════════════════════════════════════
