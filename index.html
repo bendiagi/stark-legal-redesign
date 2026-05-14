@@ -44,7 +44,7 @@
 
     html {
       scroll-behavior: smooth; font-size: 16px;
-      overflow-x: hidden; /* primary horizontal-scroll lock */
+      overflow-x: clip; /* clip ≠ hidden: no scroll container, sticky preserved */
       max-width: 100%;
     }
 
@@ -53,7 +53,7 @@
       color: var(--ink);
       background: var(--cream);
       line-height: 1.6;
-      overflow-x: hidden;
+      overflow-x: clip;
       max-width: 100%;
       -webkit-font-smoothing: antialiased;
     }
@@ -440,12 +440,17 @@
       justify-content: center;
       will-change: transform;
       transform-origin: center center;
+      pointer-events: none; /* let clicks pass through transparent layer areas */
     }
+
+    #gl0 { z-index: 2; }
 
     .gal-box {
       position: relative;
       overflow: hidden;
       flex-shrink: 0;
+      cursor: pointer;
+      pointer-events: auto; /* re-enable — pointer-events is inherited from layer */
     }
     .gal-box img {
       width: 100%;
@@ -497,6 +502,54 @@
       text-transform: uppercase; color: rgba(255,255,255,.22);
     }
     .gal-foot-sep { width: 4px; height: 4px; background: var(--gold); opacity: .4; border-radius: 50%; }
+
+    /* ── Gallery Lightbox ───────────────────── */
+    .gal-lb {
+      position: fixed; inset: 0; z-index: 10000;
+      background: rgba(6,10,20,.96);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .28s var(--ease);
+    }
+    .gal-lb.open { opacity: 1; pointer-events: auto; }
+    .gal-lb-img {
+      max-width: 88vw; max-height: 84vh;
+      width: auto; height: auto;
+      object-fit: contain;
+      display: block;
+      border: 1px solid rgba(200,169,110,.15);
+      box-shadow: 0 32px 80px rgba(0,0,0,.7);
+      transition: opacity .2s ease;
+    }
+    .gal-lb-img.switching { opacity: 0; }
+    .gal-lb-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: none; border: 1px solid rgba(200,169,110,.3);
+      color: var(--gold); cursor: pointer;
+      width: 52px; height: 52px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, border-color .2s;
+      font-size: 20px; line-height: 1;
+    }
+    .gal-lb-btn:hover { background: rgba(200,169,110,.12); border-color: var(--gold); }
+    .gal-lb-prev { left: clamp(16px, 3vw, 48px); }
+    .gal-lb-next { right: clamp(16px, 3vw, 48px); }
+    .gal-lb-close {
+      position: absolute; top: clamp(16px, 3vh, 32px); right: clamp(16px, 3vw, 32px);
+      background: none; border: 1px solid rgba(200,169,110,.3);
+      color: var(--gold); cursor: pointer;
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; line-height: 1;
+      transition: background .2s, border-color .2s;
+    }
+    .gal-lb-close:hover { background: rgba(200,169,110,.12); border-color: var(--gold); }
+    .gal-lb-counter {
+      position: absolute; bottom: clamp(16px, 3vh, 32px); left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+      color: rgba(255,255,255,.28);
+    }
 
     /* ══════════════════════════════════════════
        STATS
@@ -1082,7 +1135,7 @@
       margin-top: 40px;
     }
     .nsib-item {
-      position: relative; overflow: hidden;
+      position: relative; overflow: hidden; cursor: pointer;
     }
     .nsib-item img {
       width: 100%; height: 100%; object-fit: cover; object-position: top;
@@ -1310,6 +1363,7 @@
       #gal-zone { height: 150vh; }
       #gl3, #gl4, #gl5, #gl6 { display: none; }
       .gal-box { transform: none !important; }
+      .gal-layer { transform: none !important; }
       .gal-cue { display: none; }
       /* Team */
       .tsg-photos { overflow-x: auto; padding-bottom: 8px; }
@@ -1521,7 +1575,7 @@
 
       <!-- Layer 0 · center · 28vw×32vh · scale→4 — Handshake (MAIN / final reveal) -->
       <div class="gal-layer" id="gl0">
-        <div class="gal-box" style="width:28vw;height:32vh;">
+        <div class="gal-box" style="width:28vw;height:32vh;" data-gal-idx="0">
           <img src="https://res.cloudinary.com/daglfnssf/image/upload/v1777450737/starklegal/parallax/cytonn-photography.jpg"
                alt="Business handshake — Stark Legal client engagement" loading="lazy">
         </div>
@@ -1529,7 +1583,7 @@
 
       <!-- Layer 1 · upper-right · 32vw×28vh · scale→5 — Lagos Victoria Island skyline -->
       <div class="gal-layer" id="gl1">
-        <div class="gal-box" style="width:32vw;height:28vh;transform:translate(18vw,-24vh);">
+        <div class="gal-box" style="width:32vw;height:28vh;transform:translate(18vw,-24vh);" data-gal-idx="1">
           <img src="https://res.cloudinary.com/daglfnssf/image/upload/v1777450746/starklegal/parallax/nupo-deyon-daniel.jpg"
                alt="Lagos Victoria Island skyline" loading="lazy">
         </div>
@@ -1537,7 +1591,7 @@
 
       <!-- Layer 2 · lower-left · 26vw×24vh · scale→6 — Courtroom interior -->
       <div class="gal-layer" id="gl2">
-        <div class="gal-box" style="width:26vw;height:24vh;transform:translate(-22vw,20vh);">
+        <div class="gal-box" style="width:26vw;height:24vh;transform:translate(-22vw,20vh);" data-gal-idx="2">
           <img src="https://res.cloudinary.com/daglfnssf/image/upload/v1777450753/starklegal/parallax/david-veksler.jpg"
                alt="Courtroom interior" loading="lazy">
         </div>
@@ -1545,7 +1599,7 @@
 
       <!-- Layer 3 · lower-right · 30vw×26vh · scale→5 — Legal document review -->
       <div class="gal-layer" id="gl3">
-        <div class="gal-box" style="width:30vw;height:26vh;transform:translate(20vw,22vh);">
+        <div class="gal-box" style="width:30vw;height:26vh;transform:translate(20vw,22vh);" data-gal-idx="3">
           <img src="https://res.cloudinary.com/daglfnssf/image/upload/v1777450760/starklegal/parallax/amina-atar.jpg"
                alt="Legal document consultation" loading="lazy">
         </div>
@@ -1553,7 +1607,7 @@
 
       <!-- Layer 4 · upper-left · 24vw×28vh · scale→6 — Nigeria welcome arch -->
       <div class="gal-layer" id="gl4">
-        <div class="gal-box" style="width:24vw;height:28vh;transform:translate(-20vw,-22vh);">
+        <div class="gal-box" style="width:24vw;height:28vh;transform:translate(-20vw,-22vh);" data-gal-idx="4">
           <img src="https://res.cloudinary.com/daglfnssf/image/upload/v1777450764/starklegal/parallax/david-rotimi.jpg"
                alt="Nigeria welcome arch" loading="lazy">
         </div>
@@ -1561,7 +1615,7 @@
 
       <!-- Layer 5 · far-right · 22vw×22vh · scale→8 — Lagos busy street aerial -->
       <div class="gal-layer" id="gl5">
-        <div class="gal-box" style="width:22vw;height:22vh;transform:translate(36vw,-6vh);">
+        <div class="gal-box" style="width:22vw;height:22vh;transform:translate(36vw,-6vh);" data-gal-idx="5">
           <img src="https://res.cloudinary.com/daglfnssf/image/upload/v1777450781/starklegal/parallax/opeyemi-adisa.jpg"
                alt="Lagos commercial street aerial view" loading="lazy">
         </div>
@@ -1569,7 +1623,7 @@
 
       <!-- Layer 6 · far-left · 20vw×18vh · scale→9 — Airplane in flight -->
       <div class="gal-layer" id="gl6">
-        <div class="gal-box" style="width:20vw;height:18vh;transform:translate(-36vw,4vh);">
+        <div class="gal-box" style="width:20vw;height:18vh;transform:translate(-36vw,4vh);" data-gal-idx="6">
           <img src="https://res.cloudinary.com/daglfnssf/image/upload/v1777450801/starklegal/parallax/chris-leipelt.jpg"
                alt="Airplane in flight — Transport & Aviation practice" loading="lazy">
         </div>
@@ -2080,49 +2134,49 @@
     <div class="nsib-grid">
 
       <!-- Row 1: item1 + item2(tall) + item3 -->
-      <figure class="nsib-item sr">
+      <figure class="nsib-item sr" data-lb-idx="0">
         <img src="https://res.cloudinary.com/daglfnssf/image/upload/v1777450805/starklegal/gallery/NSIB-9.jpg" alt="NSIB Safety Summit networking" loading="lazy">
         <figcaption class="nsib-cap">NSIB Safety Summit · Lagos, 2025</figcaption>
       </figure>
 
-      <figure class="nsib-item nsib-item--tall sr d1">
+      <figure class="nsib-item nsib-item--tall sr d1" data-lb-idx="1">
         <img src="https://res.cloudinary.com/daglfnssf/image/upload/v1777450810/starklegal/gallery/NSIB-199.jpg" alt="NSIB Safety Summit speakers" loading="lazy">
         <figcaption class="nsib-cap">Aviation Safety Forum · Stark Legal</figcaption>
       </figure>
 
-      <figure class="nsib-item sr d2">
+      <figure class="nsib-item sr d2" data-lb-idx="2">
         <img src="https://res.cloudinary.com/daglfnssf/image/upload/v1777450813/starklegal/gallery/NSIB-122.jpg" alt="NSIB stakeholder engagement" loading="lazy">
         <figcaption class="nsib-cap">Stakeholder Engagement · 2025</figcaption>
       </figure>
 
       <!-- Row 2: item4 + (item2 continues) + item5 -->
-      <figure class="nsib-item sr">
+      <figure class="nsib-item sr" data-lb-idx="3">
         <img src="https://res.cloudinary.com/daglfnssf/image/upload/v1777450817/starklegal/gallery/NSIB-87.jpg" alt="NSIB conference session" loading="lazy">
         <figcaption class="nsib-cap">Conference Session · Abuja</figcaption>
       </figure>
 
-      <figure class="nsib-item sr d1">
+      <figure class="nsib-item sr d1" data-lb-idx="4">
         <img src="https://res.cloudinary.com/daglfnssf/image/upload/v1777450820/starklegal/gallery/NSIB-132.jpg" alt="NSIB panel discussion" loading="lazy">
         <figcaption class="nsib-cap">Panel Discussion · NSIB Forum</figcaption>
       </figure>
 
       <!-- Row 3–4: extra items, hidden until toggle -->
-      <figure class="nsib-item nsib-item--wide nsib-extra">
+      <figure class="nsib-item nsib-item--wide nsib-extra" data-lb-idx="5">
         <img src="https://res.cloudinary.com/daglfnssf/image/upload/v1777450824/starklegal/gallery/NSIB-55.jpg" alt="NSIB keynote event" loading="lazy">
         <figcaption class="nsib-cap">Keynote Address · Safety Summit 2025</figcaption>
       </figure>
 
-      <figure class="nsib-item nsib-extra">
+      <figure class="nsib-item nsib-extra" data-lb-idx="6">
         <img src="https://res.cloudinary.com/daglfnssf/image/upload/v1777450829/starklegal/gallery/NSIB-149.jpg" alt="NSIB briefing session" loading="lazy">
         <figcaption class="nsib-cap">Media Briefing · Lagos</figcaption>
       </figure>
 
-      <figure class="nsib-item nsib-extra">
+      <figure class="nsib-item nsib-extra" data-lb-idx="7">
         <img src="https://res.cloudinary.com/daglfnssf/image/upload/v1777450832/starklegal/gallery/NSIB-133.jpg" alt="NSIB delegates networking" loading="lazy">
         <figcaption class="nsib-cap">Delegate Networking · 2025</figcaption>
       </figure>
 
-      <figure class="nsib-item nsib-item--wide nsib-extra">
+      <figure class="nsib-item nsib-item--wide nsib-extra" data-lb-idx="8">
         <img src="https://res.cloudinary.com/daglfnssf/image/upload/v1777450836/starklegal/gallery/NSIB-326.jpg" alt="NSIB Safety Summit closing" loading="lazy">
         <figcaption class="nsib-cap">Safety Summit Closing · Stark Legal</figcaption>
       </figure>
@@ -2495,6 +2549,15 @@
     </div>
   </div>
 </footer>
+
+<!-- Gallery Lightbox Overlay (must be in DOM before the script block) -->
+<div id="gal-lb" class="gal-lb" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button id="gal-lb-prev" class="gal-lb-btn gal-lb-prev" aria-label="Previous image">&#8592;</button>
+  <img id="gal-lb-img" class="gal-lb-img" src="" alt="">
+  <button id="gal-lb-next" class="gal-lb-btn gal-lb-next" aria-label="Next image">&#8594;</button>
+  <button id="gal-lb-close" class="gal-lb-close" aria-label="Close viewer">&#215;</button>
+  <span id="gal-lb-count" class="gal-lb-counter"></span>
+</div>
 
 <!-- D3.js for the globe -->
 <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
@@ -3060,6 +3123,67 @@ const globeObs = new IntersectionObserver(entries => {
 }, { threshold: 0.05 });
 const globeCanvas = document.getElementById('globe-canvas');
 if (globeCanvas) globeObs.observe(globeCanvas);
+/* ══════════════════════════════════════════════
+   GALLERY LIGHTBOX
+══════════════════════════════════════════════ */
+(function() {
+  const IMAGES = [
+    { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450805/starklegal/gallery/NSIB-9.jpg',   alt: 'NSIB Safety Summit · Lagos, 2025' },
+    { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450810/starklegal/gallery/NSIB-199.jpg', alt: 'Aviation Safety Forum · Stark Legal' },
+    { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450813/starklegal/gallery/NSIB-122.jpg', alt: 'Stakeholder Engagement · 2025' },
+    { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450817/starklegal/gallery/NSIB-87.jpg',  alt: 'Conference Session · Abuja' },
+    { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450820/starklegal/gallery/NSIB-132.jpg', alt: 'Panel Discussion · NSIB Forum' },
+    { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450824/starklegal/gallery/NSIB-55.jpg',  alt: 'Keynote Address · Safety Summit 2025' },
+    { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450829/starklegal/gallery/NSIB-149.jpg', alt: 'Media Briefing · Lagos' },
+    { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450832/starklegal/gallery/NSIB-133.jpg', alt: 'Delegate Networking · 2025' },
+    { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450836/starklegal/gallery/NSIB-326.jpg', alt: 'Safety Summit Closing · Stark Legal' }
+  ];
+
+  const lb      = document.getElementById('gal-lb');
+  const lbImg   = document.getElementById('gal-lb-img');
+  const lbCount = document.getElementById('gal-lb-count');
+  let current   = 0;
+
+  function show(idx) {
+    current = (idx + IMAGES.length) % IMAGES.length;
+    lbImg.classList.add('switching');
+    setTimeout(() => {
+      lbImg.src = IMAGES[current].src;
+      lbImg.alt = IMAGES[current].alt;
+      lbCount.textContent = (current + 1) + ' / ' + IMAGES.length;
+      lbImg.classList.remove('switching');
+    }, 160);
+  }
+
+  function openLb(idx) {
+    show(idx);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLb() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.nsib-item[data-lb-idx]').forEach(item => {
+    item.addEventListener('click', () => openLb(parseInt(item.dataset.lbIdx)));
+  });
+
+  document.getElementById('gal-lb-prev').addEventListener('click',  e => { e.stopPropagation(); show(current - 1); });
+  document.getElementById('gal-lb-next').addEventListener('click',  e => { e.stopPropagation(); show(current + 1); });
+  document.getElementById('gal-lb-close').addEventListener('click', e => { e.stopPropagation(); closeLb(); });
+
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape')     closeLb();
+    if (e.key === 'ArrowLeft')  show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+  });
+})();
 </script>
+
 </body>
 </html>
