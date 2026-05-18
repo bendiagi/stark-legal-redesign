@@ -51,7 +51,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         sender:     { name: 'Stark Legal Website', email: 'admin@starklegalng.com' },
-        to:         [{ email: 'info@starklegalng.com', name: 'Stark Legal' }],
+        to:         [{ email: 'admin@starklegalng.com', name: 'Stark Legal' }],
         replyTo:    { email, name: `${firstName} ${lastName}` },
         subject,
         htmlContent: html,
