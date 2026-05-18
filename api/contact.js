@@ -50,7 +50,7 @@ export default async function handler(req, res) {
         'content-type': 'application/json',
       },
       body: JSON.stringify({
-        sender:     { name: 'Stark Legal Website', email: 'info@starklegalng.com' },
+        sender:     { name: 'Stark Legal Website', email: 'admin@starklegalng.com' },
         to:         [{ email: 'info@starklegalng.com', name: 'Stark Legal' }],
         replyTo:    { email, name: `${firstName} ${lastName}` },
         subject,
