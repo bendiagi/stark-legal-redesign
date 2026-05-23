@@ -27,24 +27,29 @@ const RESOURCE_CARD_FIELDS = `
   image { sanityImage { asset }, cloudinaryUrl, alt }
 `
 
+const FETCH_OPTS = { cache: 'no-store' } as const
+
 export async function getLatestResources(count = 3): Promise<Resource[]> {
   return sanityClient.fetch(
     `*[_type == "resource"] | order(date desc) [0...$count] { ${RESOURCE_CARD_FIELDS} }`,
-    { count: count - 1 }
+    { count: count - 1 },
+    FETCH_OPTS
   )
 }
 
 export async function getResourcesByType(type: string): Promise<Resource[]> {
   return sanityClient.fetch(
     `*[_type == "resource" && resourceType == $type] | order(date desc) { ${RESOURCE_CARD_FIELDS} }`,
-    { type }
+    { type },
+    FETCH_OPTS
   )
 }
 
 export async function getResourcesByTypeAndTag(type: string, tag: string): Promise<Resource[]> {
   return sanityClient.fetch(
     `*[_type == "resource" && resourceType == $type && tag == $tag] | order(date desc) { ${RESOURCE_CARD_FIELDS} }`,
-    { type, tag } as Record<string, unknown>
+    { type, tag } as Record<string, unknown>,
+    FETCH_OPTS
   )
 }
 
@@ -54,10 +59,11 @@ export async function getResourceBySlug(slug: string): Promise<Resource | null> 
       ${RESOURCE_CARD_FIELDS},
       body
     }`,
-    { slug }
+    { slug },
+    FETCH_OPTS
   )
 }
 
 export async function getAllResourceSlugs(): Promise<{ slug: { current: string } }[]> {
-  return sanityClient.fetch(`*[_type == "resource"] { slug }`)
+  return sanityClient.fetch(`*[_type == "resource"] { slug }`, {}, FETCH_OPTS)
 }

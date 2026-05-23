@@ -1,12 +1,14 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from './Nav.module.css'
 
 export default function Nav() {
-  const [stuck, setStuck] = useState(false)
+  const pathname = usePathname()
+  const [stuck, setStuck] = useState(pathname !== '/')
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mobileVisible, setMobileVisible] = useState(false)
 
@@ -17,12 +19,13 @@ export default function Nav() {
   const resourcesCloseRef = useRef<ReturnType<typeof setTimeout>>()
   const pubsCloseRef = useRef<ReturnType<typeof setTimeout>>()
 
-  // Sticky nav on scroll
+  // Sticky nav on scroll — only animate on home page
   useEffect(() => {
+    if (pathname !== '/') return
     const onScroll = () => setStuck(window.scrollY > 60)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [pathname])
 
   // Mobile menu body lock
   useEffect(() => {

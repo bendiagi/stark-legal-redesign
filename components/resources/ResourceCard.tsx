@@ -27,7 +27,7 @@ export default function ResourceCard({ resource }: { resource: Resource }) {
   const label = resource.tag ? TAG_LABELS[resource.tag] : TYPE_LABELS[resource.resourceType]
 
   return (
-    <article className={styles.card}>
+    <Link href={`/resources/${resource.slug.current}`} className={styles.card}>
       {imgUrl && (
         <div className={styles.img}>
           <Image src={imgUrl} alt={resource.image?.alt ?? resource.title} width={800} height={440} style={{ objectFit: 'cover', height: 218 }} />
@@ -40,8 +40,8 @@ export default function ResourceCard({ resource }: { resource: Resource }) {
         </div>
         <h3 className={styles.title}>{resource.title}</h3>
         {resource.excerpt && <p className={styles.excerpt}>{resource.excerpt}</p>}
-        <Link href={`/resources/${resource.slug.current}`} className={styles.link}>Read More</Link>
+        <span className={styles.link} aria-hidden="true">Read More</span>
       </div>
-    </article>
+    </Link>
   )
 }
