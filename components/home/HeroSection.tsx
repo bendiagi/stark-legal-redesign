@@ -12,15 +12,18 @@ const SLIDES = [
 
 export default function HeroSection() {
   const [idx, setIdx] = useState(0)
-  const [anim, setAnim] = useState<'in' | 'out' | null>(null)
+  const [phase, setPhase] = useState<'intro' | 'idle' | 'out' | 'in'>('intro')
+
+  function handleAnimEnd() {
+    if (phase === 'intro' || phase === 'in') setPhase('idle')
+  }
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setAnim('out')
+      setPhase('out')
       setTimeout(() => {
         setIdx(i => (i + 1) % SLIDES.length)
-        setAnim('in')
-        setTimeout(() => setAnim(null), 500)
+        setPhase('in')
       }, 500)
     }, 4500)
     return () => clearInterval(timer)
@@ -60,7 +63,8 @@ export default function HeroSection() {
         <div className={styles.loc}>Lagos &nbsp;·&nbsp; Abuja &nbsp;·&nbsp; Port-Harcourt</div>
         <div className={styles.headlineWrap}>
           <h1
-            className={`${styles.h1}${anim === 'out' ? ` ${styles.slideOut}` : anim === 'in' ? ` ${styles.slideIn}` : ''}`}
+            className={`${styles.h1}${phase === 'intro' ? ` ${styles.h1Intro}` : ''}${phase === 'out' ? ` ${styles.slideOut}` : phase === 'in' ? ` ${styles.slideIn}` : ''}`}
+            onAnimationEnd={handleAnimEnd}
             dangerouslySetInnerHTML={{ __html: slide.h }}
           />
         </div>
