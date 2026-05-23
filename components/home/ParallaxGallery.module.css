@@ -1,0 +1,15 @@
+.gallery { background: var(--navy-dark); }
+.header { padding: 48px 0 32px; display: flex; align-items: center; justify-content: space-between; }
+.tagline { font-family: var(--serif); font-style: italic; font-size: 1rem; font-weight: 300; color: rgba(255,255,255,.32); letter-spacing: .02em; display: block; margin-top: 8px; }
+.zone { height: 300vh; position: relative; }
+.sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; background: var(--navy-dark); }
+.layer { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; will-change: transform; transform-origin: center center; pointer-events: none; }
+.box { position: relative; overflow: hidden; flex-shrink: 0; cursor: pointer; pointer-events: auto; }
+.box::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(8,15,28,.28) 0%, transparent 55%, rgba(8,15,28,.18) 100%); pointer-events: none; }
+.label { position: absolute; bottom: 42px; left: 0; right: 0; text-align: center; z-index: 10; pointer-events: none; font-family: var(--serif); font-style: italic; font-size: clamp(2.5rem,5vw,5rem); font-weight: 300; letter-spacing: .12em; color: rgba(255,255,255,.04); user-select: none; }
+.cue { position: absolute; bottom: 34px; right: 48px; z-index: 10; display: flex; align-items: center; gap: 10px; font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.22); pointer-events: none; }
+.cue::before { content: ''; display: block; width: 36px; height: 1px; background: rgba(200,169,110,.4); }
+.footer { padding: 26px 0; display: flex; align-items: center; justify-content: center; gap: 40px; border-top: 1px solid rgba(255,255,255,.06); flex-wrap: wrap; }
+.footItem { font-size: 9.5px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.22); }
+.footSep { width: 4px; height: 4px; background: var(--gold); opacity: .4; border-radius: 50%; }
+@media (max-width: 640px) { .header { flex-direction: column; align-items: flex-start; gap: 12px; } .zone { height: 200vh; } }

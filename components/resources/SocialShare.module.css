@@ -1,0 +1,5 @@
+.wrap { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 32px 0; border-top: 1px solid var(--rule); margin-top: 48px; }
+.label { font-size: 9px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-2); margin-right: 4px; }
+.btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 16px; border: 1px solid var(--rule); background: none; color: var(--ink-2); font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; transition: all .2s; }
+.btn:hover { border-color: var(--navy); color: var(--navy); }
+.copied { border-color: var(--gold) !important; color: var(--gold) !important; }

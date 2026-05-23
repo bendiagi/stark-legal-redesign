@@ -1,0 +1,22 @@
+.about { padding: var(--sec-py) 0; background: var(--cream); overflow-x: clip; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; min-width: 0; }
+.grid > * { min-width: 0; }
+.body { font-size: 1.05rem; color: var(--ink-2); line-height: 1.85; margin-bottom: 22px; }
+.pills { display: flex; gap: 8px; flex-wrap: wrap; margin: 28px 0 36px; }
+.pill { padding: 6px 16px; border: 1px solid var(--rule); font-size: 10.5px; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); transition: all .3s; }
+.pill:hover { border-color: var(--gold); color: var(--navy); }
+.quoteCard { position: relative; background: var(--navy); padding: 64px 56px; overflow: hidden; }
+.quoteCard::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(200,169,110,.055) 60px, rgba(200,169,110,.055) 61px),
+    repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(200,169,110,.055) 60px, rgba(200,169,110,.055) 61px);
+}
+.qcIn { position: relative; z-index: 1; }
+.qcMark { font-family: var(--serif); font-size: 7rem; line-height: .65; color: var(--gold); opacity: .28; margin-bottom: 20px; display: block; }
+.qcText { font-family: var(--serif); font-size: 1.8rem; font-weight: 300; font-style: italic; color: var(--white); line-height: 1.4; margin-bottom: 26px; }
+.qcAttr { font-size: 10px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+.qcDeco { position: absolute; bottom: -28px; right: -28px; width: 180px; height: 180px; border: 1px solid var(--gold); opacity: .12; pointer-events: none; }
+@media (max-width: 1100px) { .grid { gap: 64px; } }
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) { .grid { grid-template-columns: 1fr; gap: 48px; } }

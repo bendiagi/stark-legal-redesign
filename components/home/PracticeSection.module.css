@@ -1,0 +1,18 @@
+.practice { padding: var(--sec-py) 0; background: var(--cream-dk); overflow-x: clip; }
+.hd { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; margin-bottom: 72px; }
+.intro { font-size: .975rem; color: var(--ink-2); max-width: 380px; line-height: 1.82; flex-shrink: 0; }
+.grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
+.pc { background: var(--white); padding: 52px 44px; position: relative; overflow: hidden; cursor: default; }
+.pc::after { content: ''; position: absolute; inset: 0; background: var(--navy); transform: scaleY(0); transform-origin: bottom; transition: transform .6s cubic-bezier(.76,0,.24,1); z-index: 0; }
+.pc:hover::after { transform: scaleY(1); }
+.pcIn { position: relative; z-index: 1; }
+.pcNum { font-family: var(--serif); font-size: .78rem; color: var(--gold); letter-spacing: .1em; margin-bottom: 34px; display: block; transition: color .4s; }
+.pcIco { width: 52px; height: 52px; margin-bottom: 22px; color: var(--navy); transition: color .4s; }
+.pcTitle { font-family: var(--serif); font-size: 1.62rem; font-weight: 400; color: var(--navy); margin-bottom: 14px; line-height: 1.15; transition: color .35s; }
+.pcBody { font-size: .875rem; color: var(--ink-2); line-height: 1.82; transition: color .35s; }
+.pc:hover .pcTitle, .pc:hover .pcBody { color: rgba(255,255,255,.82); }
+.pc:hover .pcIco { color: var(--gold); }
+.pc:hover .pcNum { color: rgba(200,169,110,.7); }
+.pcWide { grid-column: span 2; }
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } .pcWide { grid-column: span 1; } .hd { flex-direction: column; align-items: flex-start; } }
+@media (max-width: 640px) { .grid { grid-template-columns: 1fr; } .pcWide { grid-column: span 1; } }

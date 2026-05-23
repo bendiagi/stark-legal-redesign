@@ -1,0 +1,22 @@
+.news { background: var(--cream); padding: var(--sec-py) 0; overflow-x: clip; }
+.hd { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; margin-bottom: 64px; }
+.hdRight { font-size: .975rem; color: var(--ink-2); max-width: 360px; line-height: 1.82; }
+.grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
+.card { background: var(--white); display: flex; flex-direction: column; overflow: hidden; }
+.ncImg { overflow: hidden; flex-shrink: 0; }
+.ncImg img { width: 100%; height: 218px; object-fit: cover; filter: saturate(.82); display: block; transition: transform .55s cubic-bezier(.4,0,.2,1), filter .55s; }
+.card:hover .ncImg img { transform: scale(1.04); filter: saturate(1); }
+.ncBody { padding: 30px 32px 36px; display: flex; flex-direction: column; flex: 1; }
+.ncMeta { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.ncTag { font-size: 9px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(200,169,110,.3); padding: 4px 11px; }
+.ncDate { font-size: 9px; font-weight: 400; letter-spacing: .1em; color: var(--ink-2); text-transform: uppercase; }
+.ncTitle { font-family: var(--serif); font-size: 1.28rem; font-weight: 400; color: var(--navy); line-height: 1.22; margin-bottom: 13px; }
+.ncExcerpt { font-size: .855rem; color: var(--ink-2); line-height: 1.78; flex: 1; margin-bottom: 22px; }
+.ncLink { display: inline-flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--navy); transition: color .3s; }
+.ncLink::after { content: '→'; transition: transform .3s; }
+.ncLink:hover { color: var(--gold); }
+.ncLink:hover::after { transform: translateX(5px); }
+.toggleRow { display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap; padding: 48px 0 8px; }
+.empty { text-align: center; color: var(--ink-2); font-family: var(--serif); font-style: italic; font-size: 1.1rem; padding: 40px 0; }
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } .hd { flex-direction: column; align-items: flex-start; } }
+@media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }

@@ -1,0 +1,22 @@
+/* Shared tokens for all resources pages */
+.resourcesRoot { background: var(--cream); min-height: 100vh; }
+
+/* Listing page layout */
+.page { padding: calc(var(--nav-h) + 64px) 0 var(--sec-py); }
+.pageHd { margin-bottom: 64px; }
+.breadcrumb { font-size: 9.5px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.breadcrumb a { color: var(--ink-2); transition: color .3s; }
+.breadcrumb a:hover { color: var(--navy); }
+.breadcrumb span { opacity: .4; }
+.pageTitle { font-family: var(--serif); font-size: clamp(2.4rem,5vw,4rem); font-weight: 300; color: var(--navy); line-height: 1.05; margin-bottom: 20px; }
+.pageTitle em { font-style: italic; color: var(--gold); }
+.pageIntro { font-size: .975rem; color: var(--ink-2); line-height: 1.82; max-width: 520px; }
+.tagNav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 36px; }
+.tagLink { font-size: 9.5px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; padding: 8px 18px; border: 1px solid rgba(0,0,0,.14); color: var(--ink-2); transition: all .25s; }
+.tagLink:hover { border-color: var(--navy); color: var(--navy); }
+.tagLinkActive { border-color: var(--navy) !important; background: var(--navy) !important; color: var(--white) !important; }
+.grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
+.empty { font-size: .975rem; color: var(--ink-2); padding: 60px 0; }
+
+@media (max-width: 900px) { .grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }

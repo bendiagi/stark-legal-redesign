@@ -1,0 +1,4 @@
+.wrap { position: relative; margin: 0 0 32px; border-radius: 10px; overflow: hidden; background: #091524; box-shadow: 0 0 0 1px rgba(200,169,110,.12), 0 24px 60px rgba(8,15,28,.22); }
+.canvas { display: block; width: 100%; cursor: grab; }
+.canvas:active { cursor: grabbing; }
+.hint { position: absolute; bottom: 10px; left: 12px; font-size: 9.5px; letter-spacing: .1em; color: rgba(255,255,255,.3); background: rgba(0,0,0,.45); padding: 4px 10px; border-radius: 4px; pointer-events: none; }

@@ -1,0 +1,8 @@
+.cloud { background: var(--navy-dark); border-top: 1px solid rgba(255,255,255,.04); border-bottom: 1px solid rgba(255,255,255,.04); padding: 36px 0; overflow: hidden; }
+.label { text-align: center; font-size: 9.5px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.18); margin-bottom: 22px; }
+.trackWrap { overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent); mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent); }
+.track { display: flex; width: max-content; animation: lcScroll 54s linear infinite; }
+.track:hover { animation-play-state: paused; }
+.logo { display: inline-block; height: 28px; width: auto; max-width: 120px; object-fit: contain; flex-shrink: 0; filter: brightness(0) invert(1); opacity: 0.28; transition: opacity .35s; vertical-align: middle; padding: 0 38px; box-sizing: content-box; }
+.logo:hover { opacity: 0.72; }
+@keyframes lcScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
