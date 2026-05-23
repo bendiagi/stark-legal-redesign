@@ -7,7 +7,7 @@ import ArticleBody from '@/components/resources/ArticleBody'
 import SocialShare from '@/components/resources/SocialShare'
 import styles from './article.module.css'
 
-export const revalidate = 3600
+export const revalidate = 60
 
 const TAG_LABELS: Record<string, string> = {
   'energy': 'Energy',

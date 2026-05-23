@@ -3,7 +3,7 @@ import { getResourcesByType } from '@/lib/queries'
 import ResourceCard from '@/components/resources/ResourceCard'
 import styles from '../resources.module.css'
 
-export const revalidate = 3600
+export const revalidate = 60
 
 export default async function NewslettersPage() {
   const resources = await getResourcesByType('newsletter')
