@@ -90,7 +90,7 @@ export default function ContactSection() {
                 <div>
                   <div className={styles.cdLbl}>Phone</div>
                   <div className={styles.cdVal}>
-                    <a href="tel:+2349096851318">+234 909 685 1318</a><br />
+                    <a href="tel:+2349160447877">+234 916 044 7877</a><br />
                     <a href="tel:+2348038427202">+234 803 842 7202</a>
                   </div>
                 </div>
