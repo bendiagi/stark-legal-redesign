@@ -72,7 +72,6 @@ export default function Footer() {
             <div className={styles.fcTitle}>Contact</div>
             <ul className={styles.fcLinks}>
               <li><a href="tel:+2349160447877">+234 916 044 7877</a></li>
-              <li><a href="tel:+2348038427202">+234 803 842 7202</a></li>
               <li><a href="mailto:info@starklegalng.com">info@starklegalng.com</a></li>
               <li><a href="mailto:admin@starklegalng.com">admin@starklegalng.com</a></li>
               <li className={styles.offices}>Lagos · Abuja · Port-Harcourt</li>
