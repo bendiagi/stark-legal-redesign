@@ -1,0 +1,56 @@
+import Link from 'next/link'
+import { getResourcesByType } from '@/lib/queries'
+import ResourceCard from '@/components/resources/ResourceCard'
+import styles from '../../resources.module.css'
+
+export const revalidate = 60
+
+const TAGS = [
+  { label: 'All', slug: null },
+  { label: 'Energy', slug: 'energy' },
+  { label: 'Transport', slug: 'transport' },
+  { label: 'Financial Services', slug: 'financial-services' },
+  { label: 'Corporate & Commercial', slug: 'corporate-commercial' },
+  { label: 'Dispute Resolution', slug: 'dispute-resolution' },
+]
+
+export default async function CompanyUpdatesPage() {
+  const resources = await getResourcesByType('company-update')
+
+  return (
+    <main className={styles.page}>
+      <div className="W">
+        <div className={styles.pageHd}>
+          <div className={styles.breadcrumb}>
+            <Link href="/">Home</Link>
+            <span>/</span>
+            <Link href="/resources">Resources</Link>
+            <span>/</span>
+            <span>Company Updates</span>
+          </div>
+          <h1 className={styles.pageTitle}>Company<br /><em>Updates</em></h1>
+          <p className={styles.pageIntro}>Corporate announcements, milestones, and strategic updates from Stark Legal.</p>
+          <nav className={styles.tagNav} aria-label="Filter by practice area">
+            {TAGS.map(t => (
+              <Link
+                key={t.slug ?? 'all'}
+                href={t.slug ? `/resources/publications/company-updates/${t.slug}` : '/resources/publications/company-updates'}
+                className={`${styles.tagLink} ${!t.slug ? styles.tagLinkActive : ''}`}
+              >
+                {t.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        {resources.length > 0 ? (
+          <div className={styles.grid}>
+            {resources.map(r => <ResourceCard key={r._id} resource={r} />)}
+          </div>
+        ) : (
+          <p className={styles.empty}>Company updates coming soon.</p>
+        )}
+      </div>
+    </main>
+  )
+}

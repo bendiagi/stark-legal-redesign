@@ -20,12 +20,14 @@ const TAG_LABELS: Record<string, string> = {
 const TYPE_LABELS: Record<string, string> = {
   'article': 'Article',
   'regulatory-update': 'Regulatory Update',
+  'company-update': 'Company Update',
   'newsletter': 'Newsletter',
 }
 
 const TYPE_BASE: Record<string, string> = {
   'article': '/resources/publications/articles',
   'regulatory-update': '/resources/publications/regulatory-updates',
+  'company-update': '/resources/publications/company-updates',
   'newsletter': '/resources/newsletters',
 }
 

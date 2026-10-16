@@ -15,6 +15,7 @@ const TAG_LABELS: Record<string, string> = {
 const TYPE_LABELS: Record<string, string> = {
   'article': 'Article',
   'regulatory-update': 'Regulatory Update',
+  'company-update': 'Company Update',
   'newsletter': 'Newsletter',
 }
 

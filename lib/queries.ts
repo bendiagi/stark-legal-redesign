@@ -4,7 +4,7 @@ export interface Resource {
   _id: string
   title: string
   slug: { current: string }
-  resourceType: 'article' | 'regulatory-update' | 'newsletter'
+  resourceType: 'article' | 'regulatory-update' | 'company-update' | 'newsletter'
   tag?: string
   date: string
   excerpt?: string

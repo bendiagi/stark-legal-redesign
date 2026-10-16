@@ -141,6 +141,14 @@ export default function Nav() {
                     >
                       Regulatory Updates
                     </Link>
+                    <div className={styles.dropdownDivider} />
+                    <Link
+                      href="/resources/publications/company-updates"
+                      className={styles.flyoutLink}
+                      onClick={() => { setResourcesOpen(false); setPubsOpen(false) }}
+                    >
+                      Company Updates
+                    </Link>
                   </div>
                 </div>
 
@@ -212,6 +220,7 @@ export default function Nav() {
           <div className={`${styles.mobAccordionContent}${mobPubsOpen ? ` ${styles.open}` : ''}`}>
             <Link href="/resources/publications/articles" className={styles.mobSubLink} onClick={closeMobile}>Articles</Link>
             <Link href="/resources/publications/regulatory-updates" className={styles.mobSubLink} onClick={closeMobile}>Regulatory Updates</Link>
+            <Link href="/resources/publications/company-updates" className={styles.mobSubLink} onClick={closeMobile}>Company Updates</Link>
           </div>
 
           <Link href="/resources/newsletters" className={styles.mobSubLink} style={{ fontWeight: 500 }} onClick={closeMobile}>

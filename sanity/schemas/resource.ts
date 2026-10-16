@@ -52,6 +52,7 @@ export default defineType({
         list: [
           { title: 'Article', value: 'article' },
           { title: 'Regulatory Update', value: 'regulatory-update' },
+          { title: 'Company Updates', value: 'company-update' },
           { title: 'Newsletter', value: 'newsletter' },
         ],
         layout: 'radio',
