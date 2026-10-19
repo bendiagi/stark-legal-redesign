@@ -8,6 +8,18 @@ const TAG_OPTIONS = [
   { title: 'Dispute Resolution', value: 'dispute-resolution' },
 ]
 
+const COMPANY_TAG_OPTIONS = [
+  { title: 'People & Appointments', value: 'people-appointments' },
+  { title: 'Careers & Graduates', value: 'careers-graduates' },
+  { title: 'Awards & Recognition', value: 'awards-recognition' },
+  { title: 'Milestones & Anniversaries', value: 'milestones-anniversaries' },
+  { title: 'Deals & Mandates', value: 'deals-mandates' },
+  { title: 'Partnerships & Alliances', value: 'partnerships-alliances' },
+  { title: 'Events & Webinars', value: 'events-webinars' },
+  { title: 'Community & CSR', value: 'community-csr' },
+  { title: 'Firm News', value: 'firm-news' },
+]
+
 const blockContent = defineArrayMember({
   type: 'block',
   styles: [
@@ -64,11 +76,27 @@ export default defineType({
       title: 'Tag',
       type: 'string',
       options: { list: TAG_OPTIONS },
-      hidden: ({ document }) => document?.resourceType === 'newsletter',
+      hidden: ({ document }) =>
+        document?.resourceType === 'newsletter' || document?.resourceType === 'company-update',
       validation: (Rule) =>
         Rule.custom((value, context) => {
-          if (context.document?.resourceType !== 'newsletter' && !value) {
-            return 'Tag is required for Articles and Regulatory Updates'
+          const t = context.document?.resourceType
+          if (t !== 'newsletter' && t !== 'company-update' && !value) {
+            return 'Tag is required for this type'
+          }
+          return true
+        }),
+    }),
+    defineField({
+      name: 'companyTag',
+      title: 'Tag',
+      type: 'string',
+      options: { list: COMPANY_TAG_OPTIONS },
+      hidden: ({ document }) => document?.resourceType !== 'company-update',
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          if (context.document?.resourceType === 'company-update' && !value) {
+            return 'Tag is required for Company Updates'
           }
           return true
         }),

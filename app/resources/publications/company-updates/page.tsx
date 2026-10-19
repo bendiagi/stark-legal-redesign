@@ -7,11 +7,15 @@ export const revalidate = 60
 
 const TAGS = [
   { label: 'All', slug: null },
-  { label: 'Energy', slug: 'energy' },
-  { label: 'Transport', slug: 'transport' },
-  { label: 'Financial Services', slug: 'financial-services' },
-  { label: 'Corporate & Commercial', slug: 'corporate-commercial' },
-  { label: 'Dispute Resolution', slug: 'dispute-resolution' },
+  { label: 'People & Appointments', slug: 'people-appointments' },
+  { label: 'Careers & Graduates', slug: 'careers-graduates' },
+  { label: 'Awards & Recognition', slug: 'awards-recognition' },
+  { label: 'Milestones & Anniversaries', slug: 'milestones-anniversaries' },
+  { label: 'Deals & Mandates', slug: 'deals-mandates' },
+  { label: 'Partnerships & Alliances', slug: 'partnerships-alliances' },
+  { label: 'Events & Webinars', slug: 'events-webinars' },
+  { label: 'Community & CSR', slug: 'community-csr' },
+  { label: 'Firm News', slug: 'firm-news' },
 ]
 
 export default async function CompanyUpdatesPage() {

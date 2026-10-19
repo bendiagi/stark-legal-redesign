@@ -21,7 +21,7 @@ const RESOURCE_CARD_FIELDS = `
   title,
   slug,
   resourceType,
-  tag,
+  "tag": select(resourceType == "company-update" => companyTag, tag),
   date,
   excerpt,
   image { sanityImage { asset }, cloudinaryUrl, alt }
@@ -47,7 +47,7 @@ export async function getResourcesByType(type: string): Promise<Resource[]> {
 
 export async function getResourcesByTypeAndTag(type: string, tag: string): Promise<Resource[]> {
   return sanityClient.fetch(
-    `*[_type == "resource" && resourceType == $type && tag == $tag] | order(date desc) { ${RESOURCE_CARD_FIELDS} }`,
+    `*[_type == "resource" && resourceType == $type && select(resourceType == "company-update" => companyTag, tag) == $tag] | order(date desc) { ${RESOURCE_CARD_FIELDS} }`,
     { type, tag } as Record<string, unknown>,
     FETCH_OPTS
   )
