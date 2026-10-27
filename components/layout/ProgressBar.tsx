@@ -14,9 +14,13 @@ export default function ProgressBar() {
     if (pathname === prevPathRef.current) return
     prevPathRef.current = pathname
 
-    // Page arrived — complete the bar
+    // Page arrived — complete the bar, then fully reset so it unmounts
+    clearTimeout(timerRef.current)
     setWidth(100)
-    timerRef.current = setTimeout(() => setVisible(false), 400)
+    timerRef.current = setTimeout(() => {
+      setVisible(false)
+      setWidth(0)
+    }, 400)
 
     return () => clearTimeout(timerRef.current)
   }, [pathname])
@@ -24,19 +28,29 @@ export default function ProgressBar() {
   // On mount, wire up Link clicks to start the bar
   useEffect(() => {
     function handleClick(e: MouseEvent) {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
       const anchor = (e.target as HTMLElement).closest('a')
-      if (!anchor) return
-      const href = anchor.getAttribute('href')
-      // Only trigger for internal same-origin navigation
-      if (!href || href.startsWith('http') || href.startsWith('#') || href.startsWith('mailto')) return
+      if (!anchor || (anchor.target && anchor.target !== '_self') || anchor.hasAttribute('download')) return
+
+      // Only start for a real page change: same-origin and a different pathname.
+      // Hash jumps (/#team on /) and same-page links never change pathname, so the
+      // bar would never get its completion signal and would stall forever.
+      let url: URL
+      try { url = new URL(anchor.href, window.location.href) } catch { return }
+      if (url.origin !== window.location.origin || url.pathname === window.location.pathname) return
 
       clearTimeout(timerRef.current)
       setWidth(0)
       setVisible(true)
-      // Animate to ~80% and stall (real completion fires when pathname changes)
+      // Animate to ~75% and stall (real completion fires when pathname changes)
       requestAnimationFrame(() => {
         requestAnimationFrame(() => setWidth(75))
       })
+      // Safety net: if the navigation never lands (cancelled, failed), don't leave the bar hanging
+      timerRef.current = setTimeout(() => {
+        setVisible(false)
+        setWidth(0)
+      }, 10000)
     }
 
     document.addEventListener('click', handleClick)

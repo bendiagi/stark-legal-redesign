@@ -20,3 +20,15 @@
 
 @media (max-width: 900px) { .grid { grid-template-columns: repeat(2,1fr); } }
 @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+
+/* Loading skeletons (loading.tsx) */
+.skel { background: linear-gradient(90deg, rgba(0,0,0,.05) 25%, rgba(0,0,0,.09) 50%, rgba(0,0,0,.05) 75%); background-size: 200% 100%; animation: skelShimmer 1.4s ease-in-out infinite; }
+.skelLine { height: 12px; margin-bottom: 12px; }
+.skelCrumb { height: 10px; width: 220px; margin-bottom: 20px; }
+.skelTitle { height: clamp(34px,5vw,56px); width: min(520px,80%); margin-bottom: 14px; }
+.skelCard { background: var(--white); }
+.skelCardImg { height: 200px; }
+.skelCardBody { padding: 24px; }
+.srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@keyframes skelShimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .skel { animation: none; } }

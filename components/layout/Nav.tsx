@@ -19,10 +19,12 @@ export default function Nav() {
   const resourcesCloseRef = useRef<ReturnType<typeof setTimeout>>()
   const pubsCloseRef = useRef<ReturnType<typeof setTimeout>>()
 
-  // Sticky nav on scroll — only animate on home page
+  // Sticky nav on scroll — only animate on home page. Nav persists across client-side
+  // navigations, so `stuck` must be re-derived from the route, not just the initial state.
   useEffect(() => {
-    if (pathname !== '/') return
+    if (pathname !== '/') { setStuck(true); return }
     const onScroll = () => setStuck(window.scrollY > 60)
+    onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [pathname])
