@@ -80,7 +80,7 @@ export default function ParallaxGallery() {
                   alt={layer.alt}
                   fill
                   style={{ objectFit: 'cover' }}
-                  loading="lazy"
+                  loading="eager"
                 />
               </div>
             </div>

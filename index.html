@@ -876,6 +876,18 @@
       padding-left: 36px; margin-top: 5px;
     }
 
+    /* Partner bios: click a row with a bio to expand it */
+    .tnr.can-open { cursor: pointer; }
+    .tnr-toggle { display: inline-flex; align-items: center; gap: 8px; background: none; border: 0; padding: 0; cursor: pointer; text-align: left; }
+    .tnr-toggle:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+    .tnr-chev { flex-shrink: 0; color: var(--gold); transition: transform .35s var(--ease); }
+    .is-open .tnr-chev { transform: rotate(180deg); }
+    .tnr-bio { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows .4s var(--ease), visibility 0s linear .4s; }
+    .is-open .tnr-bio { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows .4s var(--ease), visibility 0s; }
+    .tnr-bio-inner { overflow: hidden; min-height: 0; }
+    .tnr-bio-text { font-size: .925rem; color: var(--ink-2); line-height: 1.8; padding: 14px 0 4px 36px; max-width: 62ch; cursor: default; }
+    @media (prefers-reduced-motion: reduce) { .tnr-bio, .is-open .tnr-bio, .tnr-chev { transition: none; } }
+
     /* ══════════════════════════════════════════
        AWARDS
     ══════════════════════════════════════════ */
@@ -1288,6 +1300,7 @@
       .tsg-layout { grid-template-columns: 1fr; gap: 52px; }
       .tsg-photos { justify-content: center; }
       .tsg-names  { display: grid; grid-template-columns: 1fr 1fr; }
+      .tnr.is-open { grid-column: 1 / -1; }
     }
     @media (max-width: 1100px) {
       .W { padding: 0 36px; }
@@ -1946,81 +1959,115 @@
 
     <div class="tsg-layout">
 
-      <!-- Photo grid (3 staggered columns) -->
+      <!-- Photo grid (3 staggered columns, round-robin) -->
       <div class="tsg-photos" aria-hidden="true">
 
-        <!-- Col 1: MO (0), CA (3), KC (6) -->
         <div class="tsg-col">
           <div class="tsp tsp--a" data-id="0">
-              <img src="https://res.cloudinary.com/djnkxndun/image/upload/v1779267105/MO-scaled_t5fdub.jpg" alt="Mojisola Olugbemi" loading="lazy">
-            </div>
-            <div class="tsp tsp--a" data-id="3">
-              <img src="https://res.cloudinary.com/djnkxndun/image/upload/v1779267105/Caleb-scaled_zjwa4e.jpg" alt="Caleb Aluya" loading="lazy">
-            </div>
-            <div class="tsp tsp--a" data-id="6">
-              <img src="https://res.cloudinary.com/djnkxndun/image/upload/v1779267368/Kingsley_ztoxxm.jpg" alt="Kingsley Chidume" loading="lazy">
-            </div>
+            <img src="https://res.cloudinary.com/impxv2hw/image/upload/v1792750590/Dr._Mojisola_Olugbemi_-_Principal_Partner.jpg" alt="Dr. Mojisola Olugbemi" loading="lazy">
           </div>
+          <div class="tsp tsp--a" data-id="3">
+            <img src="https://res.cloudinary.com/impxv2hw/image/upload/v1792750610/joy_Haruna-Senior_Associate.png" alt="Joy Haruna" loading="lazy">
+          </div>
+          <div class="tsp tsp--a" data-id="6">
+            <img src="https://res.cloudinary.com/impxv2hw/image/upload/v1792750611/Nicholas_Nwosu_-_Associate.jpg" alt="Nicholas Nwosu" loading="lazy">
+          </div>
+          <div class="tsp tsp--a" data-id="9">
+            <img src="https://res.cloudinary.com/impxv2hw/image/upload/v1792750586/Khalid_Badru_-_Associate.jpg" alt="Khalid Badru" loading="lazy">
+          </div>
+          <div class="tsp tsp--a" data-id="12">
+            <img src="https://res.cloudinary.com/impxv2hw/image/upload/v1792750618/Margaret_Wonah_-_Facility_Officer.png" alt="Margaret Wonah" loading="lazy">
+          </div>
+          <div class="tsp tsp--a" data-id="15">
+            <img src="https://res.cloudinary.com/impxv2hw/image/upload/v1792750587/Abdulhakeem_Akinola-Tech_Support_Graphic_Designer.jpg" alt="Abdulhakeem Akinola" loading="lazy">
+          </div>
+        </div>
 
-          <!-- Col 2: AA (1), CO (4), GO (7) — +64px stagger -->
-          <div class="tsg-col tsg-col--b">
-            <div class="tsp tsp--b" data-id="1">
-              <img src="https://res.cloudinary.com/djnkxndun/image/upload/v1779267104/AA-scaled_jjyjcm.jpg" alt="Ayobamidele Akande" loading="lazy">
-            </div>
-            <div class="tsp tsp--b" data-id="4">
-              <img src="https://res.cloudinary.com/djnkxndun/image/upload/v1779267106/Chisom-scaled_wxiald.jpg" alt="Chisom Okeke" loading="lazy">
-            </div>
-            <div class="tsp tsp--b" data-id="7">
-              <img src="https://res.cloudinary.com/djnkxndun/image/upload/v1779267107/Goodness_-scaled_yyvf7n.jpg" alt="Goodness Okoye-Egbe" loading="lazy">
-            </div>
+        <div class="tsg-col tsg-col--b">
+          <div class="tsp tsp--b" data-id="1">
+            <img src="https://res.cloudinary.com/impxv2hw/image/upload/v1792750591/Ayobamidele_Akande_SAN_Managing_Partner.jpg" alt="Ayobamidele Akande, SAN" loading="lazy">
           </div>
+          <div class="tsp tsp--b" data-id="4">
+            <img src="https://res.cloudinary.com/impxv2hw/image/upload/v1792750617/Damilola_Oke_-_Human_Resource_Officer_and_Chief_Visibility_Officer.png" alt="Damilola Oke" loading="lazy">
+          </div>
+          <div class="tsp tsp--b" data-id="7">
+            <img src="https://res.cloudinary.com/impxv2hw/image/upload/v1792750610/Abdulbaqi_Adebiyi_-_Associate.png" alt="Abdulbaqi Adebiyi" loading="lazy">
+          </div>
+          <div class="tsp tsp--b" data-id="10">
+            <img src="https://res.cloudinary.com/impxv2hw/image/upload/v1792750586/Margaret_Emmanuel_-_Associate.jpg" alt="Margaret Emmanuel" loading="lazy">
+          </div>
+          <div class="tsp tsp--b" data-id="13">
+            <img src="https://res.cloudinary.com/impxv2hw/image/upload/v1792750667/Yusuf_Adebowale-Accountant.png" alt="Yusuf Adebowale" loading="lazy">
+          </div>
+          <div class="tsp tsp--b" data-id="16">
+            <img src="https://res.cloudinary.com/impxv2hw/image/upload/v1792750612/Adebayo_Olamide_-Office_Driver.png" alt="Adebayo Olamide" loading="lazy">
+          </div>
+        </div>
 
-          <!-- Col 3: VA (2), EO (5), OA (8) — +32px stagger -->
-          <div class="tsg-col tsg-col--c">
-            <div class="tsp tsp--c" data-id="2">
-              <img src="https://res.cloudinary.com/djnkxndun/image/upload/v1779267105/Victor-scaled_luudkh.jpg" alt="Victor Abasiodiong" loading="lazy">
-            </div>
-            <div class="tsp tsp--c" data-id="5">
-              <img src="https://res.cloudinary.com/djnkxndun/image/upload/v1779267367/Emmanuel_ckmzzq.jpg" alt="Emmanuel Olatunde" loading="lazy">
-            </div>
-            <div class="tsp tsp--c" data-id="8">
-              <img src="https://res.cloudinary.com/djnkxndun/image/upload/v1779267106/Uju-scaled_bsptvx.jpg" alt="Obianuju Ajagbo" loading="lazy">
-            </div>
+        <div class="tsg-col tsg-col--c">
+          <div class="tsp tsp--c" data-id="2">
+            <img src="https://res.cloudinary.com/impxv2hw/image/upload/v1792750624/Emmanuel_Olatunde_-_Senior_Associate.png" alt="Emmanuel Olatunde" loading="lazy">
           </div>
-        </div><!-- /tsg-photos -->
+          <div class="tsp tsp--c" data-id="5">
+            <img src="https://res.cloudinary.com/impxv2hw/image/upload/v1792750617/Goodness_Okoye-Associate.jpg" alt="Goodness Okoye" loading="lazy">
+          </div>
+          <div class="tsp tsp--c" data-id="8">
+            <img src="https://res.cloudinary.com/impxv2hw/image/upload/v1792750611/Obianujunwa_Ajagbo_-_Associate.jpg" alt="Obianujunwa Ajagbo" loading="lazy">
+          </div>
+          <div class="tsp tsp--c" data-id="11">
+            <img src="https://res.cloudinary.com/impxv2hw/image/upload/v1792750618/ESTHER_Sangobiyi-Admin_Facility_Manager.png" alt="Esther Sangobiyi" loading="lazy">
+          </div>
+          <div class="tsp tsp--c" data-id="14">
+            <img src="https://res.cloudinary.com/impxv2hw/image/upload/v1792750614/Osbourne_Ivwurie_-Librarian.jpg" alt="Osbourne Ivwurie" loading="lazy">
+          </div>
+          <div class="tsp tsp--c" data-id="17">
+            <img src="https://res.cloudinary.com/impxv2hw/image/upload/v1792750633/Taiwo_Onipede-Office_Assistant.jpg" alt="Taiwo Ogunshaki" loading="lazy">
+          </div>
+        </div>
+      </div><!-- /tsg-photos -->
 
       <!-- Name list -->
       <div class="tsg-names" role="list">
 
-        <div class="tnr sr" data-id="0" role="listitem">
+        <div class="tnr sr can-open" data-id="0" role="listitem">
           <div class="tnr-top">
             <span class="tnr-bar" aria-hidden="true"></span>
-            <span class="tnr-name">Mojisola Olugbemi</span>
-            <div class="tnr-socials" aria-label="Mojisola Olugbemi social links">
-              <a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener">
-                <svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg>
-              </a>
+            <button type="button" class="tnr-name tnr-toggle" aria-expanded="false" aria-controls="team-bio-0">Dr. Mojisola Olugbemi<svg class="tnr-chev" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="tnr-socials" aria-label="Dr. Mojisola Olugbemi social links">
+              <a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a>
             </div>
           </div>
           <div class="tnr-role">Principal Partner</div>
+          <div class="tnr-bio" id="team-bio-0" role="region" aria-label="About Dr. Mojisola Olugbemi">
+            <div class="tnr-bio-inner">
+              <p class="tnr-bio-text">Dr. Mojisola Olugbemi is the Founding and Principal Partner of Stark Legal, with expertise spanning energy, oil and gas, aviation, maritime law, and alternative dispute resolution. An award-winning legal practitioner, she contributed to the development of Nigeria’s Petroleum Industry Act and has received several honours, including the ESQ 40 Under 40 Award and Managing Partner of the Year (Small Practice). She holds an LL.M from Swansea University and a Doctorate in Business Management from EIMT, Switzerland. Beyond her legal practice, she champions corporate governance, children’s rights, and youth entrepreneurship.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="tnr sr d1" data-id="1" role="listitem">
+        <div class="tnr sr d1 can-open" data-id="1" role="listitem">
           <div class="tnr-top">
             <span class="tnr-bar" aria-hidden="true"></span>
-            <span class="tnr-name">Ayobamidele Akande</span>
-            <div class="tnr-socials" aria-label="Ayobamidele Akande social links">
+            <button type="button" class="tnr-name tnr-toggle" aria-expanded="false" aria-controls="team-bio-1">Ayobamidele Akande, SAN<svg class="tnr-chev" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="tnr-socials" aria-label="Ayobamidele Akande, SAN social links">
               <a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a>
             </div>
           </div>
           <div class="tnr-role">Managing Partner</div>
+          <div class="tnr-bio" id="team-bio-1" role="region" aria-label="About Ayobamidele Akande, SAN">
+            <div class="tnr-bio-inner">
+              <p class="tnr-bio-text">Ayobamidele Akande, SAN is the Managing Partner at Stark Legal, leading the firm’s Finance, Telecommunications and Dispute Resolution practice groups. Following his elevation to the rank of Senior Advocate of Nigeria (SAN) he continues to advise local and international clients on financial regulation, telecommunications, fintech, project finance, private equity and commercial disputes. He also serves on corporate boards and is the Centre Director of the Centre for African Economics, Law and Policy (CAELP). He is licensed to practise in Nigeria and New York and is a member of the Chartered Institute of Arbitrators, UK.</p>
+            </div>
+          </div>
         </div>
 
         <div class="tnr sr d2" data-id="2" role="listitem">
           <div class="tnr-top">
             <span class="tnr-bar" aria-hidden="true"></span>
-            <span class="tnr-name">Victor Abasiodiong</span>
-            <div class="tnr-socials"><a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a></div>
+            <span class="tnr-name">Emmanuel Olatunde</span>
+            <div class="tnr-socials" aria-label="Emmanuel Olatunde social links">
+              <a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a>
+            </div>
           </div>
           <div class="tnr-role">Senior Associate</div>
         </div>
@@ -2028,8 +2075,10 @@
         <div class="tnr sr d3" data-id="3" role="listitem">
           <div class="tnr-top">
             <span class="tnr-bar" aria-hidden="true"></span>
-            <span class="tnr-name">Caleb Aluya</span>
-            <div class="tnr-socials"><a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a></div>
+            <span class="tnr-name">Joy Haruna</span>
+            <div class="tnr-socials" aria-label="Joy Haruna social links">
+              <a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a>
+            </div>
           </div>
           <div class="tnr-role">Senior Associate</div>
         </div>
@@ -2037,17 +2086,21 @@
         <div class="tnr sr" data-id="4" role="listitem">
           <div class="tnr-top">
             <span class="tnr-bar" aria-hidden="true"></span>
-            <span class="tnr-name">Chisom Okeke</span>
-            <div class="tnr-socials"><a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a></div>
+            <span class="tnr-name">Damilola Oke</span>
+            <div class="tnr-socials" aria-label="Damilola Oke social links">
+              <a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a>
+            </div>
           </div>
-          <div class="tnr-role">Senior Associate</div>
+          <div class="tnr-role">Human Resources Officer / Chief Visibility Officer</div>
         </div>
 
         <div class="tnr sr d1" data-id="5" role="listitem">
           <div class="tnr-top">
             <span class="tnr-bar" aria-hidden="true"></span>
-            <span class="tnr-name">Emmanuel Olatunde</span>
-            <div class="tnr-socials"><a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a></div>
+            <span class="tnr-name">Goodness Okoye</span>
+            <div class="tnr-socials" aria-label="Goodness Okoye social links">
+              <a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a>
+            </div>
           </div>
           <div class="tnr-role">Associate</div>
         </div>
@@ -2055,8 +2108,10 @@
         <div class="tnr sr d2" data-id="6" role="listitem">
           <div class="tnr-top">
             <span class="tnr-bar" aria-hidden="true"></span>
-            <span class="tnr-name">Kingsley Chidume</span>
-            <div class="tnr-socials"><a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a></div>
+            <span class="tnr-name">Nicholas Nwosu</span>
+            <div class="tnr-socials" aria-label="Nicholas Nwosu social links">
+              <a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a>
+            </div>
           </div>
           <div class="tnr-role">Associate</div>
         </div>
@@ -2064,8 +2119,10 @@
         <div class="tnr sr d3" data-id="7" role="listitem">
           <div class="tnr-top">
             <span class="tnr-bar" aria-hidden="true"></span>
-            <span class="tnr-name">Goodness Okoye-Egbe</span>
-            <div class="tnr-socials"><a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a></div>
+            <span class="tnr-name">Abdulbaqi Adebiyi</span>
+            <div class="tnr-socials" aria-label="Abdulbaqi Adebiyi social links">
+              <a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a>
+            </div>
           </div>
           <div class="tnr-role">Associate</div>
         </div>
@@ -2073,10 +2130,111 @@
         <div class="tnr sr" data-id="8" role="listitem">
           <div class="tnr-top">
             <span class="tnr-bar" aria-hidden="true"></span>
-            <span class="tnr-name">Obianuju Ajagbo</span>
-            <div class="tnr-socials"><a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a></div>
+            <span class="tnr-name">Obianujunwa Ajagbo</span>
+            <div class="tnr-socials" aria-label="Obianujunwa Ajagbo social links">
+              <a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a>
+            </div>
           </div>
           <div class="tnr-role">Associate</div>
+        </div>
+
+        <div class="tnr sr d1" data-id="9" role="listitem">
+          <div class="tnr-top">
+            <span class="tnr-bar" aria-hidden="true"></span>
+            <span class="tnr-name">Khalid Badru</span>
+            <div class="tnr-socials" aria-label="Khalid Badru social links">
+              <a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a>
+            </div>
+          </div>
+          <div class="tnr-role">Associate</div>
+        </div>
+
+        <div class="tnr sr d2" data-id="10" role="listitem">
+          <div class="tnr-top">
+            <span class="tnr-bar" aria-hidden="true"></span>
+            <span class="tnr-name">Margaret Emmanuel</span>
+            <div class="tnr-socials" aria-label="Margaret Emmanuel social links">
+              <a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a>
+            </div>
+          </div>
+          <div class="tnr-role">Associate</div>
+        </div>
+
+        <div class="tnr sr d3" data-id="11" role="listitem">
+          <div class="tnr-top">
+            <span class="tnr-bar" aria-hidden="true"></span>
+            <span class="tnr-name">Esther Sangobiyi</span>
+            <div class="tnr-socials" aria-label="Esther Sangobiyi social links">
+              <a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a>
+            </div>
+          </div>
+          <div class="tnr-role">Admin and Facility Manager</div>
+        </div>
+
+        <div class="tnr sr" data-id="12" role="listitem">
+          <div class="tnr-top">
+            <span class="tnr-bar" aria-hidden="true"></span>
+            <span class="tnr-name">Margaret Wonah</span>
+            <div class="tnr-socials" aria-label="Margaret Wonah social links">
+              <a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a>
+            </div>
+          </div>
+          <div class="tnr-role">Facility Officer</div>
+        </div>
+
+        <div class="tnr sr d1" data-id="13" role="listitem">
+          <div class="tnr-top">
+            <span class="tnr-bar" aria-hidden="true"></span>
+            <span class="tnr-name">Yusuf Adebowale</span>
+            <div class="tnr-socials" aria-label="Yusuf Adebowale social links">
+              <a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a>
+            </div>
+          </div>
+          <div class="tnr-role">Accountant</div>
+        </div>
+
+        <div class="tnr sr d2" data-id="14" role="listitem">
+          <div class="tnr-top">
+            <span class="tnr-bar" aria-hidden="true"></span>
+            <span class="tnr-name">Osbourne Ivwurie</span>
+            <div class="tnr-socials" aria-label="Osbourne Ivwurie social links">
+              <a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a>
+            </div>
+          </div>
+          <div class="tnr-role">Librarian</div>
+        </div>
+
+        <div class="tnr sr d3" data-id="15" role="listitem">
+          <div class="tnr-top">
+            <span class="tnr-bar" aria-hidden="true"></span>
+            <span class="tnr-name">Abdulhakeem Akinola</span>
+            <div class="tnr-socials" aria-label="Abdulhakeem Akinola social links">
+              <a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a>
+            </div>
+          </div>
+          <div class="tnr-role">Tech Support / Graphic Designer</div>
+        </div>
+
+        <div class="tnr sr" data-id="16" role="listitem">
+          <div class="tnr-top">
+            <span class="tnr-bar" aria-hidden="true"></span>
+            <span class="tnr-name">Adebayo Olamide</span>
+            <div class="tnr-socials" aria-label="Adebayo Olamide social links">
+              <a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a>
+            </div>
+          </div>
+          <div class="tnr-role">Office Driver</div>
+        </div>
+
+        <div class="tnr sr d1" data-id="17" role="listitem">
+          <div class="tnr-top">
+            <span class="tnr-bar" aria-hidden="true"></span>
+            <span class="tnr-name">Taiwo Ogunshaki</span>
+            <div class="tnr-socials" aria-label="Taiwo Ogunshaki social links">
+              <a href="#" class="tnr-social" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M1 1.5h2.5v11H1v-11zm1.25-1.5a1.25 1.25 0 110 2.5A1.25 1.25 0 012.25 0zM5 5.5h2.4v1.5h.04C7.84 5.7 8.9 5 10.3 5 12.5 5 13 6.5 13 8.5v5H10.5V9c0-.8 0-2-1.2-2S7.7 8.2 7.7 9v4.5H5V5.5z"/></svg></a>
+            </div>
+          </div>
+          <div class="tnr-role">Office Assistant</div>
         </div>
 
       </div><!-- /tsg-names -->
@@ -2741,6 +2899,20 @@ tspEls.forEach(el => {
 tnrEls.forEach(el => {
   el.addEventListener('mouseenter', () => teamHighlight(el.dataset.id));
   el.addEventListener('mouseleave', () => teamHighlight(null));
+});
+
+/* Partner bios: click a row with a bio to expand it (one open at a time) */
+document.querySelectorAll('.tnr.can-open').forEach(row => {
+  const toggle = row.querySelector('.tnr-toggle');
+  row.addEventListener('click', () => {
+    const open = !row.classList.contains('is-open');
+    document.querySelectorAll('.tnr.can-open').forEach(r => {
+      r.classList.remove('is-open');
+      r.querySelector('.tnr-toggle').setAttribute('aria-expanded', 'false');
+    });
+    if (open) { row.classList.add('is-open'); toggle.setAttribute('aria-expanded', 'true'); }
+  });
+  row.querySelector('.tnr-social').addEventListener('click', e => e.stopPropagation());
 });
 
 /* ── Contact form ────────────────────────────── */

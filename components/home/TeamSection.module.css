@@ -31,3 +31,16 @@
 @media (max-width: 1200px) { .layout { grid-template-columns: 1fr; gap: 52px; } .photos { justify-content: center; } .names { display: grid; grid-template-columns: 1fr 1fr; } }
 @media (max-width: 768px) { .names { grid-template-columns: 1fr; } .hd { flex-direction: column; align-items: flex-start; } }
 @media (max-width: 640px) { .photos { overflow-x: auto; padding-bottom: 8px; } .colB { margin-top: 28px; } .tspA { width: 100px; height: 128px; } .tspB { width: 112px; height: 142px; } .tspC { width: 106px; height: 135px; } .names { grid-template-columns: 1fr; } }
+
+/* Partner bios: click a row with a bio to expand it */
+.canOpen { cursor: pointer; }
+.tnrToggle { display: inline-flex; align-items: center; gap: 8px; background: none; border: 0; padding: 0; cursor: pointer; text-align: left; }
+.tnrToggle:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+.chev { flex-shrink: 0; color: var(--gold); transition: transform .35s var(--ease); }
+.isOpen .chev { transform: rotate(180deg); }
+.bio { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows .4s var(--ease), visibility 0s linear .4s; }
+.isOpen .bio { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows .4s var(--ease), visibility 0s; }
+.bioInner { overflow: hidden; min-height: 0; }
+.bioText { font-size: .925rem; color: var(--ink-2); line-height: 1.8; padding: 14px 0 4px 36px; max-width: 62ch; cursor: default; }
+@media (max-width: 1200px) { .tnr.isOpen { grid-column: 1 / -1; } }
+@media (prefers-reduced-motion: reduce) { .bio, .isOpen .bio, .chev { transition: none; } }
