@@ -6,15 +6,27 @@ import ScrollReveal from './ScrollReveal'
 import styles from './PhotoGallerySection.module.css'
 
 const PHOTOS = [
-  { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450805/starklegal/gallery/NSIB-9.jpg',   alt: 'NSIB Safety Summit networking', cap: 'NSIB Safety Summit · Lagos, 2025', extra: false, tall: false, wide: false },
-  { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450810/starklegal/gallery/NSIB-199.jpg', alt: 'NSIB Safety Summit speakers', cap: 'Aviation Safety Forum · Stark Legal', extra: false, tall: true, wide: false },
-  { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450813/starklegal/gallery/NSIB-122.jpg', alt: 'NSIB stakeholder engagement', cap: 'Stakeholder Engagement · 2025', extra: false, tall: false, wide: false },
-  { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450817/starklegal/gallery/NSIB-87.jpg',  alt: 'NSIB conference session', cap: 'Conference Session · Abuja', extra: false, tall: false, wide: false },
-  { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450820/starklegal/gallery/NSIB-132.jpg', alt: 'NSIB panel discussion', cap: 'Panel Discussion · NSIB Forum', extra: false, tall: false, wide: false },
-  { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450824/starklegal/gallery/NSIB-55.jpg',  alt: 'NSIB keynote event', cap: 'Keynote Address · Safety Summit 2025', extra: true, tall: false, wide: true },
+  { src: 'https://res.cloudinary.com/impxv2hw/image/upload/v1793349423/SDS_8172.jpg',   alt: 'A Portrait with the Principal Partner', cap: 'A Portrait with the Principal Partner', extra: false, tall: false, wide: false },
+  { src: 'https://res.cloudinary.com/impxv2hw/image/upload/v1793349422/SDS_8142_1.jpg', alt: 'Celebrating with Principal Partner and Colleagues', cap: 'Celebrating with Principal Partner and Colleagues', extra: false, tall: true, wide: false },
+  { src: 'https://res.cloudinary.com/impxv2hw/image/upload/v1793349422/SDS_8158.jpg',   alt: 'Group Photograph with Staffs', cap: 'Group Photograph with Staffs', extra: false, tall: false, wide: false },
+  { src: 'https://res.cloudinary.com/impxv2hw/image/upload/v1793349422/SDS_7726.jpg',   alt: 'The Cake-Cutting Ceremony', cap: 'The Cake-Cutting Ceremony', extra: false, tall: false, wide: false },
+  { src: 'https://res.cloudinary.com/impxv2hw/image/upload/v1793349421/SDS_7649.jpg',   alt: 'Guests at the Celebratory Luncheon', cap: 'Guests at the Celebratory Luncheon', extra: false, tall: false, wide: false },
+  { src: 'https://res.cloudinary.com/impxv2hw/image/upload/v1793349417/SDS_7360.jpg',   alt: 'An Address in Honour of the Occasion', cap: 'An Address in Honour of the Occasion', extra: true, tall: false, wide: true },
+  { src: 'https://res.cloudinary.com/impxv2hw/image/upload/v1793349421/SDS_7200.jpg',   alt: 'Address at the Celebratory Luncheon', cap: 'Address at the Celebratory Luncheon', extra: true, tall: false, wide: false },
+  { src: 'https://res.cloudinary.com/impxv2hw/image/upload/v1793349417/SDS_6902.jpg',   alt: 'Celebrating with Family and Well-Wishers', cap: 'Celebrating with Family and Well-Wishers', extra: true, tall: false, wide: false },
+  { src: 'https://res.cloudinary.com/impxv2hw/image/upload/v1793349418/SDS_7106.jpg',   alt: 'A Gathering of Friends and Colleagues', cap: 'A Gathering of Friends and Colleagues', extra: true, tall: false, wide: true },
+  { src: 'https://res.cloudinary.com/impxv2hw/image/upload/v1793349420/SDS_6913.jpg',   alt: 'Celebrating with Distinguished Guests', cap: 'Celebrating with Distinguished Guests', extra: true, tall: false, wide: false },
+  { src: 'https://res.cloudinary.com/impxv2hw/image/upload/v1793349417/SDS_6685.jpg',   alt: 'Commemorating the SAN Conferment', cap: 'Commemorating the SAN Conferment', extra: true, tall: false, wide: false },
+  { src: 'https://res.cloudinary.com/impxv2hw/image/upload/v1793349417/SDS_6618.jpg',   alt: 'Arrival at the Supreme Court', cap: 'Arrival at the Supreme Court', extra: true, tall: false, wide: false },
+  { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450805/starklegal/gallery/NSIB-9.jpg',   alt: 'NSIB Safety Summit networking', cap: 'NSIB Safety Summit · Lagos, 2025', extra: true, tall: false, wide: false },
+  { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450810/starklegal/gallery/NSIB-199.jpg', alt: 'NSIB Safety Summit speakers', cap: 'Aviation Safety Forum · Stark Legal', extra: true, tall: false, wide: false },
+  { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450813/starklegal/gallery/NSIB-122.jpg', alt: 'NSIB stakeholder engagement', cap: 'Stakeholder Engagement · 2025', extra: true, tall: false, wide: false },
+  { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450817/starklegal/gallery/NSIB-87.jpg',  alt: 'NSIB conference session', cap: 'Conference Session · Abuja', extra: true, tall: false, wide: false },
+  { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450820/starklegal/gallery/NSIB-132.jpg', alt: 'NSIB panel discussion', cap: 'Panel Discussion · NSIB Forum', extra: true, tall: false, wide: false },
+  { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450824/starklegal/gallery/NSIB-55.jpg',  alt: 'NSIB keynote event', cap: 'Keynote Address · Safety Summit 2025', extra: true, tall: false, wide: false },
   { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450829/starklegal/gallery/NSIB-149.jpg', alt: 'NSIB briefing session', cap: 'Media Briefing · Lagos', extra: true, tall: false, wide: false },
   { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450832/starklegal/gallery/NSIB-133.jpg', alt: 'NSIB delegates networking', cap: 'Delegate Networking · 2025', extra: true, tall: false, wide: false },
-  { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450836/starklegal/gallery/NSIB-326.jpg', alt: 'NSIB Safety Summit closing', cap: 'Safety Summit Closing · Stark Legal', extra: true, tall: false, wide: true },
+  { src: 'https://res.cloudinary.com/daglfnssf/image/upload/v1777450836/starklegal/gallery/NSIB-326.jpg', alt: 'NSIB Safety Summit closing', cap: 'Safety Summit Closing · Stark Legal', extra: true, tall: false, wide: false },
 ]
 
 export default function PhotoGallerySection() {
